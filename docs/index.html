@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mundial 2026 · Apuestas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Barlow+Condensed:wght@600;800&display=swap" rel="stylesheet">
+<style>
+:root {
+    --verde: #00C46A;
+    --verde-dark: #009950;
+    --negro: #0D0D0D;
+    --gris-oscuro: #1A1A1A;
+    --gris-medio: #2A2A2A;
+    --gris-borde: #333;
+    --texto: #F0F0F0;
+    --texto-suave: #888;
+    --oro: #FFD060;
+    --rojo: #FF4D4D;
+    --accent: #00C46A;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: 'Space Grotesk', sans-serif;
+    background: var(--negro);
+    color: var(--texto);
+    min-height: 100vh;
+}
+header {
+    background: var(--gris-oscuro);
+    border-bottom: 2px solid var(--verde);
+    padding: 24px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+.header-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--verde);
+}
+.header-sub {
+    font-size: 0.85rem;
+    color: var(--texto-suave);
+    margin-top: 2px;
+}
+.badge {
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+.badge-open { background: var(--verde); color: #000; }
+.badge-closed { background: #444; color: var(--texto-suave); }
+main { max-width: 900px; margin: 0 auto; padding: 32px 16px; }
+section { margin-bottom: 48px; }
+.section-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--verde);
+    border-left: 4px solid var(--verde);
+    padding-left: 12px;
+    margin-bottom: 20px;
+}
+.clasificacion { display: flex; flex-direction: column; gap: 12px; }
+.jugador-row {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    align-items: center;
+    gap: 16px;
+    background: var(--gris-oscuro);
+    border: 1px solid var(--gris-borde);
+    border-radius: 8px;
+    padding: 14px 18px;
+}
+.jugador-info { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.pos { font-size: 1.2rem; flex-shrink: 0; }
+.nombre { font-weight: 700; font-size: 1rem; }
+.stats { font-size: 0.78rem; color: var(--texto-suave); white-space: nowrap; }
+.barra-wrap {
+    width: 120px;
+    height: 8px;
+    background: var(--gris-medio);
+    border-radius: 4px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+.barra-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--verde-dark), var(--verde));
+    border-radius: 4px;
+    transition: width 0.6s ease;
+}
+.pts { font-weight: 700; font-size: 1rem; color: var(--oro); white-space: nowrap; }
+.fase-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--texto-suave);
+    margin: 24px 0 10px;
+}
+.partido-card {
+    background: var(--gris-oscuro);
+    border: 1px solid var(--gris-borde);
+    border-radius: 10px;
+    margin-bottom: 12px;
+    overflow: hidden;
+}
+.partido-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--gris-borde);
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.equipos { display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 0.95rem; }
+.vs { color: var(--texto-suave); font-size: 0.8rem; }
+.partido-meta { display: flex; align-items: center; gap: 12px; }
+.fecha { font-size: 0.78rem; color: var(--texto-suave); }
+.sin-resultado { font-size: 0.8rem; color: var(--texto-suave); font-style: italic; }
+.resultado { font-weight: 700; font-size: 1rem; color: var(--verde); }
+.apuestas-grid {
+    padding: 10px 18px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.apuesta-row { display: flex; align-items: center; gap: 8px; }
+.part-nombre { font-size: 0.8rem; color: var(--texto-suave); }
+.apuesta { font-size: 0.78rem; font-weight: 600; padding: 2px 8px; border-radius: 4px; background: var(--gris-medio); }
+.apuesta.acierto { background: rgba(0,196,106,0.2); color: var(--verde); }
+.apuesta.fallo { background: rgba(255,77,77,0.15); color: var(--rojo); }
+.no-apuesta { font-size: 0.78rem; color: #555; }
+.empty-msg { color: var(--texto-suave); font-style: italic; font-size: 0.9rem; }
+.info-box {
+    background: var(--gris-oscuro);
+    border: 1px solid var(--gris-borde);
+    border-left: 3px solid var(--verde);
+    border-radius: 8px;
+    padding: 16px 20px;
+    font-size: 0.88rem;
+    color: var(--texto-suave);
+    line-height: 1.6;
+}
+.info-box strong { color: var(--texto); }
+footer {
+    text-align: center;
+    padding: 32px;
+    font-size: 0.78rem;
+    color: #444;
+}
+@media (max-width: 600px) {
+    .barra-wrap { width: 70px; }
+    .jugador-row { grid-template-columns: 1fr auto; }
+    .barra-wrap { display: none; }
+}
+</style>
+</head>
+<body>
+<header>
+    <div>
+        <div class="header-title">⚽ Mundial 2026 · Quiniela</div>
+        <div class="header-sub">Predicción de ganadores · 12 partidos</div>
+    </div>
+    <span class="badge badge-open">Apuestas abiertas</span>
+</header>
+<main>
+    <section>
+        <div class="section-title">Clasificación</div>
+        <p class="empty-msg">Aún no hay participantes registrados.</p>
+    </section>
+    <section>
+        <div class="section-title">Cómo apuntar tu apuesta</div>
+        <div class="info-box">
+            <strong>Las apuestas están abiertas.</strong><br>
+            Edita el archivo <code>data/partidos.json</code> y ejecuta <code>python scripts/generar.py</code> para registrar participantes y apuestas. Consulta el README para instrucciones detalladas.
+        </div>
+    </section>
+    <section>
+        <div class="section-title">Partidos</div>
+        <div class="fase-label">Grupos – Grupo A</div>
+            <div class="partido-card">
+                <div class="partido-header">
+                    <div class="equipos">
+                        <span>🇲🇽 México</span>
+                        <span class="vs">vs</span>
+                        <span>Polonia 🇵🇱</span>
+                    </div>
+                    <div class="partido-meta">
+                        <span class="fecha">2026-06-11</span>
+                        <span class="sin-resultado">Pendiente</span>
+                    </div>
+                </div>
+                <div class="apuestas-grid">
+                    <span class="no-apuesta">Sin apuestas aún</span>
+                </div>
+            </div>
+            <div class="partido-card">
+                <div class="partido-header">
+                    <div class="equipos">
+                        <span>🇸🇦 Arabia Saudí</span>
+                        <span class="vs">vs</span>
+                        <span>Argentina 🇦🇷</span>
+                    </div>
+                    <div class="partido-meta">
+                        <span class="fecha">2026-06-11</span>
+                        <span class="sin-resultado">Pendiente</span>
+                    </div>
+                </div>
+                <div class="apuestas-grid">
+                    <span class="no-apuesta">Sin apuestas aún</span>
+                </div>
+            </div><div class="fase-label">Grupos – Grupo B</div>
+            <div class="partido-card">
+                <div class="partido-header">
+                    <div class="equipos">
+                        <span>🇺🇸 Estados Unidos</span>
+                        <span class="vs">vs</span>
+                        <span>Gales 🏴󠁧󠁢󠁷󠁬󠁳󠁿</span>
+                    </div>
+                    <div class="partido-meta">
+                        <span class="fecha">2026-06-11</span>
+                        <span class="sin-resultado">Pendiente</span>
+                    </div>
+                </div>
+                <div class="apuestas-grid">
+                    <span class="no-apuesta">Sin apuestas aún</span>
+                </div>
+            </div>
+            <div class="partido-card">
+                <div class="partido-header">
+                    <div class="equipos">
+                        <span>🏴󠁧󠁢󠁥󠁮󠁧󠁿 Inglaterra</span>
+                        <span class="vs">vs</span>
+                        <span>Irán 🇮🇷</span>
+                    </div>
+                    <div class="partido-meta">
+                        <span class="fecha">2026-06-11</span>
+                        <span class="sin-resultado">Pendiente</span>
+                    </div>
+                </div>
+                <div class="apuestas-grid">
+                    <span class="no-apuesta">Sin apuestas aún</span>
+                </div>
+            </div><div class="fase-label">Grupos – Grupo C</div>
+            <div class="partido-card">
+                <div class="partido-header">
+                    <div class="equipos">
+                        <span>🇫🇷 Francia</span>
+                        <span class="vs">vs</span>
+                        <span>Australia 🇦🇺</span>
+                    </div>
+                    <div class="partido-meta">
+                        <span class="fecha">2026-06-12</span>
+                        <span class="sin-resultado">Pendiente</span>
+                    </div>
+                </div>
+                <div class="apuestas-grid">
+                    <span class="no-apuesta">Sin apuestas aún</span>
+                </div>
+            </div>
+            <div class="partido-card">
+                <div class="partido-header">
+                    <div class="equipos">
+                        <span>🇩🇰 Dinamarca</span>
+                        <span class="vs">vs</span>
+                        <span>Túnez 🇹🇳</span>
+                    </div>
+                    <div class="partido-meta">
+                        <span class="fecha">2026-06-12</span>
+                        <span class="sin-resultado">Pendiente</span>
+                    </div>
+                </div>
+                <div class="apuestas-grid">
+                    <span class="no-apuesta">Sin apuestas aún</span>
+                </div>
+            </div><div class="fase-label">Grupos – Grupo D</div>
+            <div class="partido-card">
+                <div class="partido-header">
+                    <div class="equipos">
+                        <span>🇪🇸 España</span>
+                        <span class="vs">vs</span>
+                        <span>Costa Rica 🇨🇷</span>
+                    </div>
+                    <div class="partido-meta">
+                        <span class="fecha">2026-06-12</span>
+                        <span class="sin-resultado">Pendiente</span>
+                    </div>
+                </div>
+                <div class="apuestas-grid">
+                    <span class="no-apuesta">Sin apuestas aún</span>
+                </div>
+            </div>
+            <div class="partido-card">
+                <div class="partido-header">
+                    <div class="equipos">
+                        <span>🇩🇪 Alemania</span>
+                        <span class="vs">vs</span>
+                        <span>Japón 🇯🇵</span>
+                    </div>
+                    <div class="partido-meta">
+                        <span class="fecha">2026-06-12</span>
+                        <span class="sin-resultado">Pendiente</span>
+                    </div>
+                </div>
+                <div class="apuestas-grid">
+                    <span class="no-apuesta">Sin apuestas aún</span>
+                </div>
+            </div><div class="fase-label">Grupos – Grupo E</div>
+            <div class="partido-card">
+                <div class="partido-header">
+                    <div class="equipos">
+                        <span>🇧🇷 Brasil</span>
+                        <span class="vs">vs</span>
+                        <span>Serbia 🇷🇸</span>
+                    </div>
+                    <div class="partido-meta">
+                        <span class="fecha">2026-06-13</span>
+                        <span class="sin-resultado">Pendiente</span>
+                    </div>
+                </div>
+                <div class="apuestas-grid">
+                    <span class="no-apuesta">Sin apuestas aún</span>
+                </div>
+            </div>
+            <div class="partido-card">
+                <div class="partido-header">
+                    <div class="equipos">
+                        <span>🇨🇭 Suiza</span>
+                        <span class="vs">vs</span>
+                        <span>Camerún 🇨🇲</span>
+                    </div>
+                    <div class="partido-meta">
+                        <span class="fecha">2026-06-13</span>
+                        <span class="sin-resultado">Pendiente</span>
+                    </div>
+                </div>
+                <div class="apuestas-grid">
+                    <span class="no-apuesta">Sin apuestas aún</span>
+                </div>
+            </div><div class="fase-label">Grupos – Grupo F</div>
+            <div class="partido-card">
+                <div class="partido-header">
+                    <div class="equipos">
+                        <span>🇵🇹 Portugal</span>
+                        <span class="vs">vs</span>
+                        <span>Ghana 🇬🇭</span>
+                    </div>
+                    <div class="partido-meta">
+                        <span class="fecha">2026-06-13</span>
+                        <span class="sin-resultado">Pendiente</span>
+                    </div>
+                </div>
+                <div class="apuestas-grid">
+                    <span class="no-apuesta">Sin apuestas aún</span>
+                </div>
+            </div>
+            <div class="partido-card">
+                <div class="partido-header">
+                    <div class="equipos">
+                        <span>🇺🇾 Uruguay</span>
+                        <span class="vs">vs</span>
+                        <span>Corea del Sur 🇰🇷</span>
+                    </div>
+                    <div class="partido-meta">
+                        <span class="fecha">2026-06-13</span>
+                        <span class="sin-resultado">Pendiente</span>
+                    </div>
+                </div>
+                <div class="apuestas-grid">
+                    <span class="no-apuesta">Sin apuestas aún</span>
+                </div>
+            </div>
+    </section>
+</main>
+<footer>Generado con Python · Mundial 2026</footer>
+</body>
+</html>
