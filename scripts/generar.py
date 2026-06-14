@@ -14,7 +14,7 @@ BANDERAS = {
     "Portugal": "🇵🇹", "Ghana": "🇬🇭", "Uruguay": "🇺🇾", "Corea del Sur": "🇰🇷"
 }
 
-PUNTOS_ACIERTO = 3
+PUNTOS_ACIERTO = 1
 PUNTOS_EMPATE_ACIERTO = 1
 
 
@@ -55,7 +55,7 @@ def calcular_puntuaciones(data):
 
 
 def flag(equipo):
-    return BANDERAS.get(equipo, "🏳")
+    return BANDERAS.get(equipo, "")
 
 
 def resultado_texto(partido):

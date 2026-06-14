@@ -40,7 +40,7 @@ def main():
         data["participantes"] = [p for p in data["participantes"] if p["nombre"].lower() != nombre.lower()]
 
     apuestas = []
-    print("\nPara cada partido elige: 1=Local  2=Empate  3=Visitante\n")
+    print("\nPara cada partido elige: 1=Local  2=Empate  3=Visitante  Enter=Saltar\n")
 
     for partido in data["partidos"]:
         local = partido["local"]
@@ -48,11 +48,13 @@ def main():
         pid = partido["id"]
         print(f"  [{pid:2d}] {local} vs {visitante}  ({partido['fecha']})")
         while True:
-            opcion = input("       Tu apuesta (1/2/3): ").strip()
+            opcion = input("       Tu apuesta (1/2/3 o Enter para saltar): ").strip()
+            if opcion == "":
+                break
             if opcion in OPCIONES:
                 apuestas.append({"partido_id": pid, "ganador": OPCIONES[opcion]})
                 break
-            print("       Opción no válida. Escribe 1, 2 o 3.")
+            print("       Opción no válida. Escribe 1, 2, 3 o Enter para saltar.")
 
     data["participantes"].append({"nombre": nombre, "apuestas": apuestas})
     guardar(data)
