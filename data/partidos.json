@@ -2,7 +2,106 @@
   "torneo": "Mundial 2026",
   "apuestas_abiertas": true,
   "admin_hash": "9922f479da2a37c244a9c5e81695cfeb85f508e6",
-  "participantes": [],
+  "participantes": [
+    {
+      "nombre": "Luna",
+      "apuestas": [
+        {
+          "partido_id": 2,
+          "ganador": "local"
+        },
+        {
+          "partido_id": 3,
+          "ganador": "local"
+        },
+        {
+          "partido_id": 4,
+          "ganador": "visitante"
+        },
+        {
+          "partido_id": 5,
+          "ganador": "visitante"
+        },
+        {
+          "partido_id": 6,
+          "ganador": "local"
+        },
+        {
+          "partido_id": 7,
+          "ganador": "visitante"
+        },
+        {
+          "partido_id": 8,
+          "ganador": "visitante"
+        },
+        {
+          "partido_id": 9,
+          "ganador": "local"
+        },
+        {
+          "partido_id": 10,
+          "ganador": "empate"
+        },
+        {
+          "partido_id": 11,
+          "ganador": "empate"
+        },
+        {
+          "partido_id": 12,
+          "ganador": "local"
+        }
+      ]
+    },
+    {
+      "nombre": "Dani",
+      "apuestas": [
+        {
+          "partido_id": 2,
+          "ganador": "empate"
+        },
+        {
+          "partido_id": 3,
+          "ganador": "visitante"
+        },
+        {
+          "partido_id": 4,
+          "ganador": "empate"
+        },
+        {
+          "partido_id": 5,
+          "ganador": "visitante"
+        },
+        {
+          "partido_id": 6,
+          "ganador": "local"
+        },
+        {
+          "partido_id": 7,
+          "ganador": "visitante"
+        },
+        {
+          "partido_id": 8,
+          "ganador": "visitante"
+        },
+        {
+          "partido_id": 9,
+          "ganador": "local"
+        },
+        {
+          "partido_id": 10,
+          "ganador": "local"
+        },
+        {
+          "partido_id": 11,
+          "ganador": "visitante"
+        },
+        {
+          "partido_id": 12,
+          "ganador": "empate"
+        }
+      ]
+    }
+  ],
   "partidos": [
     {
       "id": 1,
