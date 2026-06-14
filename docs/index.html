@@ -3,2669 +3,2825 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mundial 2026 · Apuestas</title>
+<title>Mundial 2026 · Quiniela</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Barlow+Condensed:wght@600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
-    --verde: #00C46A;
-    --verde-dark: #009950;
-    --negro: #0D0D0D;
-    --gris-oscuro: #1A1A1A;
-    --gris-medio: #2A2A2A;
-    --gris-borde: #333;
-    --texto: #F0F0F0;
-    --texto-suave: #888;
-    --oro: #FFD060;
-    --rojo: #FF4D4D;
-    --accent: #00C46A;
+    --crema: #FFF8EC;
+    --marino: #16213E;
+    --marino-10: rgba(22,33,62,0.1);
+    --amarillo: #FFD23F;
+    --coral: #FF5C4D;
+    --azul: #2EC4F1;
+    --verde: #1FAA59;
+    --gris: #8D99AE;
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 body {
-    font-family: 'Space Grotesk', sans-serif;
-    background: var(--negro);
-    color: var(--texto);
+    font-family: 'Inter', sans-serif;
+    background: var(--crema);
+    background-image:
+        radial-gradient(circle at 8% 18%, rgba(46,196,241,0.12) 0, transparent 35%),
+        radial-gradient(circle at 92% 12%, rgba(255,210,63,0.18) 0, transparent 35%),
+        radial-gradient(circle at 85% 80%, rgba(255,92,77,0.10) 0, transparent 40%);
+    color: var(--marino);
     min-height: 100vh;
 }
 header {
-    background: var(--gris-oscuro);
-    border-bottom: 2px solid var(--verde);
-    padding: 24px 32px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 12px;
+    position: relative;
+    background: var(--marino);
+    padding: 36px 24px 30px;
+    text-align: center;
+    overflow: hidden;
+    border-bottom: 6px solid var(--amarillo);
 }
+header::before, header::after {
+    content: "⚽";
+    position: absolute;
+    font-size: 4rem;
+    opacity: 0.08;
+}
+header::before { top: -10px; left: -10px; transform: rotate(-15deg); }
+header::after { bottom: -20px; right: -10px; transform: rotate(20deg); }
 .header-title {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 2rem;
-    font-weight: 800;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: var(--verde);
+    font-family: 'Fredoka', sans-serif;
+    font-size: clamp(1.8rem, 6vw, 2.8rem);
+    font-weight: 700;
+    color: var(--crema);
+    letter-spacing: 0.02em;
 }
+.header-title .accent { color: var(--amarillo); }
 .header-sub {
-    font-size: 0.85rem;
-    color: var(--texto-suave);
-    margin-top: 2px;
+    font-size: 0.9rem;
+    color: var(--azul);
+    margin-top: 6px;
+    font-weight: 500;
 }
 .badge {
-    font-size: 0.75rem;
-    font-weight: 700;
-    padding: 4px 12px;
+    display: inline-block;
+    margin-top: 14px;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 6px 18px;
     border-radius: 999px;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.1em;
 }
-.badge-open { background: var(--verde); color: #000; }
-.badge-closed { background: #444; color: var(--texto-suave); }
-main { max-width: 900px; margin: 0 auto; padding: 32px 16px; }
-section { margin-bottom: 48px; }
+.badge-open { background: var(--amarillo); color: var(--marino); }
+.badge-closed { background: var(--coral); color: var(--crema); }
+main { max-width: 880px; margin: 0 auto; padding: 28px 16px 60px; }
+section { margin-bottom: 44px; }
 .section-title {
-    font-family: 'Barlow Condensed', sans-serif;
+    font-family: 'Fredoka', sans-serif;
     font-size: 1.3rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: var(--verde);
-    border-left: 4px solid var(--verde);
-    padding-left: 12px;
-    margin-bottom: 20px;
-}
-.clasificacion { display: flex; flex-direction: column; gap: 12px; }
-.jugador-row {
-    display: grid;
-    grid-template-columns: 1fr auto auto;
+    font-weight: 600;
+    color: var(--marino);
+    margin-bottom: 18px;
+    display: flex;
     align-items: center;
-    gap: 16px;
-    background: var(--gris-oscuro);
-    border: 1px solid var(--gris-borde);
-    border-radius: 8px;
-    padding: 14px 18px;
+    gap: 10px;
 }
-.jugador-info { display: flex; align-items: center; gap: 10px; min-width: 0; }
-.pos { font-size: 1.2rem; flex-shrink: 0; }
-.nombre { font-weight: 700; font-size: 1rem; }
-.stats { font-size: 0.78rem; color: var(--texto-suave); white-space: nowrap; }
-.barra-wrap {
-    width: 120px;
-    height: 8px;
-    background: var(--gris-medio);
-    border-radius: 4px;
-    overflow: hidden;
+.section-title .dot {
+    width: 14px; height: 14px;
+    background: var(--coral);
+    border-radius: 50%;
+    display: inline-block;
+}
+
+/* Clasificación */
+.clasificacion { display: flex; flex-direction: column; gap: 10px; }
+.jugador-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: #fff;
+    border: 2px solid var(--marino-10);
+    border-radius: 16px;
+    padding: 12px 16px;
+}
+.jugador-row.top3 { border-color: var(--borde-pos); border-width: 2.5px; }
+.avatar {
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    background: var(--crema);
+    border: 2px solid var(--borde-pos, var(--marino-10));
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 600;
+    font-size: 1.1rem;
     flex-shrink: 0;
 }
-.barra-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--verde-dark), var(--verde));
-    border-radius: 4px;
-    transition: width 0.6s ease;
+.jugador-main { flex: 1; min-width: 0; }
+.jugador-top {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 6px; gap: 8px;
 }
-.pts { font-weight: 700; font-size: 1rem; color: var(--oro); white-space: nowrap; }
+.nombre { font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: 1.02rem; }
+.pts { font-family: 'Fredoka', sans-serif; font-weight: 700; font-size: 1rem; color: var(--coral); white-space: nowrap; }
+.barra-wrap { width: 100%; height: 8px; background: var(--marino-10); border-radius: 999px; overflow: hidden; margin-bottom: 4px; }
+.barra-fill { height: 100%; background: linear-gradient(90deg, var(--azul), var(--verde)); border-radius: 999px; transition: width 0.6s ease; }
+.stats { font-size: 0.74rem; color: var(--gris); }
+
+/* Fase label */
 .fase-label {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.85rem;
+    margin: 28px 0 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.fase-label span {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 0.82rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: var(--texto-suave);
-    margin: 24px 0 10px;
+    background: var(--c);
+    color: #fff;
+    padding: 5px 14px;
+    border-radius: 999px;
 }
-.partido-card {
-    background: var(--gris-oscuro);
-    border: 1px solid var(--gris-borde);
-    border-radius: 10px;
-    margin-bottom: 12px;
-    overflow: hidden;
+.fase-label::after {
+    content: "";
+    flex: 1;
+    height: 2px;
+    background: repeating-linear-gradient(90deg, var(--c) 0 6px, transparent 6px 12px);
+    opacity: 0.4;
 }
-.partido-header {
-    display: flex;
-    justify-content: space-between;
+
+/* Cromo (match card) */
+.cromo {
+    background: #fff;
+    border-radius: 18px;
+    border: 2.5px dashed var(--c);
+    padding: 16px 18px;
+    margin-bottom: 14px;
+    position: relative;
+}
+.cromo-top {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    padding: 14px 18px;
-    border-bottom: 1px solid var(--gris-borde);
-    flex-wrap: wrap;
     gap: 8px;
 }
-.equipos { display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 0.95rem; }
-.vs { color: var(--texto-suave); font-size: 0.8rem; }
-.partido-meta { display: flex; align-items: center; gap: 12px; }
-.fecha { font-size: 0.78rem; color: var(--texto-suave); }
-.sin-resultado { font-size: 0.8rem; color: var(--texto-suave); font-style: italic; }
-.resultado { font-weight: 700; font-size: 1rem; color: var(--verde); }
+.equipo { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.equipo-derecha { justify-content: flex-end; text-align: right; }
+.bandera { font-size: 1.6rem; flex-shrink: 0; }
+.equipo-nombre { font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: 0.95rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.marcador { text-align: center; min-width: 60px; }
+.resultado { font-family: 'Fredoka', sans-serif; font-weight: 700; font-size: 1.3rem; color: var(--marino); }
+.sin-resultado { font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: 1rem; color: var(--gris); }
+.cromo-fecha { text-align: center; font-size: 0.72rem; color: var(--gris); margin-top: 6px; letter-spacing: 0.05em; }
 .apuestas-grid {
-    padding: 10px 18px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--marino-10);
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 10px;
 }
-.apuesta-row { display: flex; align-items: center; gap: 8px; }
-.part-nombre { font-size: 0.8rem; color: var(--texto-suave); }
-.apuesta { font-size: 0.78rem; font-weight: 600; padding: 2px 8px; border-radius: 4px; background: var(--gris-medio); }
-.apuesta.acierto { background: rgba(0,196,106,0.2); color: var(--verde); }
-.apuesta.fallo { background: rgba(255,77,77,0.15); color: var(--rojo); }
-.no-apuesta { font-size: 0.78rem; color: #555; }
-.empty-msg { color: var(--texto-suave); font-style: italic; font-size: 0.9rem; }
+.apuesta-row { display: flex; align-items: center; gap: 6px; }
+.part-nombre { font-size: 0.76rem; color: var(--gris); font-weight: 500; }
+.chip {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 0.74rem; font-weight: 600;
+    padding: 3px 10px; border-radius: 999px;
+    background: var(--crema);
+    border: 1.5px solid var(--marino-10);
+}
+.chip-acierto { background: rgba(31,170,89,0.12); border-color: var(--verde); color: var(--verde); }
+.chip-fallo { background: rgba(255,92,77,0.10); border-color: var(--coral); color: var(--coral); }
+.chip-vacio { color: var(--gris); border-style: dashed; }
+
 .info-box {
-    background: var(--gris-oscuro);
-    border: 1px solid var(--gris-borde);
-    border-left: 3px solid var(--verde);
-    border-radius: 8px;
+    background: #fff;
+    border: 2px solid var(--marino-10);
+    border-left: 5px solid var(--azul);
+    border-radius: 14px;
     padding: 16px 20px;
     font-size: 0.88rem;
-    color: var(--texto-suave);
+    color: var(--marino);
     line-height: 1.6;
 }
-.info-box strong { color: var(--texto); }
+.info-box code {
+    background: var(--crema);
+    padding: 2px 6px;
+    border-radius: 6px;
+    font-size: 0.82rem;
+}
+.empty-msg { color: var(--gris); font-style: italic; font-size: 0.9rem; }
 footer {
     text-align: center;
-    padding: 32px;
-    font-size: 0.78rem;
-    color: #444;
+    padding: 28px;
+    font-size: 0.76rem;
+    color: var(--gris);
 }
-@media (max-width: 600px) {
-    .barra-wrap { width: 70px; }
-    .jugador-row { grid-template-columns: 1fr auto; }
-    .barra-wrap { display: none; }
+@media (max-width: 480px) {
+    .equipo-nombre { font-size: 0.82rem; }
+    .bandera { font-size: 1.3rem; }
 }
 </style>
 </head>
 <body>
 <header>
-    <div>
-        <div class="header-title">⚽ Mundial 2026 · Quiniela</div>
-        <div class="header-sub">Predicción de ganadores · 102 partidos</div>
-    </div>
-    <span class="badge badge-open">Apuestas abiertas</span>
+    <div class="header-title">⚽ Mundial 2026 <span class="accent">· Quiniela</span></div>
+    <div class="header-sub">102 partidos · ¿quién sabe más de fútbol?</div>
+    <span class="badge badge-open">Apuestas ABIERTAS</span>
 </header>
 <main>
     <section>
-        <div class="section-title">Clasificación</div>
+        <div class="section-title"><span class="dot"></span>Clasificación</div>
         <div class="clasificacion">
-        <div class="jugador-row">
-            <div class="jugador-info">
-                <span class="pos">🥇</span>
-                <span class="nombre">Luna</span>
-                <span class="stats">2 aciertos · 7 jugados</span>
+        <div class="jugador-row top3" style="--borde-pos:#FFD23F">
+            <div class="avatar">🥇</div>
+            <div class="jugador-main">
+                <div class="jugador-top">
+                    <span class="nombre">Luna</span>
+                    <span class="pts">2 pts</span>
+                </div>
+                <div class="barra-wrap">
+                    <div class="barra-fill" style="width: 100%"></div>
+                </div>
+                <span class="stats">2 aciertos de 7 jugados</span>
             </div>
-            <div class="barra-wrap">
-                <div class="barra-fill" style="width: 100%"></div>
-            </div>
-            <span class="pts">2 pts</span>
         </div>
-        <div class="jugador-row">
-            <div class="jugador-info">
-                <span class="pos">🥈</span>
-                <span class="nombre">Dani</span>
-                <span class="stats">1 aciertos · 7 jugados</span>
+        <div class="jugador-row top3" style="--borde-pos:#C8D3DB">
+            <div class="avatar">🥈</div>
+            <div class="jugador-main">
+                <div class="jugador-top">
+                    <span class="nombre">Dani</span>
+                    <span class="pts">1 pts</span>
+                </div>
+                <div class="barra-wrap">
+                    <div class="barra-fill" style="width: 50%"></div>
+                </div>
+                <span class="stats">1 aciertos de 7 jugados</span>
             </div>
-            <div class="barra-wrap">
-                <div class="barra-fill" style="width: 50%"></div>
-            </div>
-            <span class="pts">1 pts</span>
         </div></div>
     </section>
     <section>
-        <div class="section-title">Cómo apuntar tu apuesta</div>
+        <div class="section-title"><span class="dot" style="background:var(--azul)"></span>Cómo apostar</div>
         <div class="info-box">
             <strong>Las apuestas están abiertas.</strong><br>
-            Edita el archivo <code>data/partidos.json</code> y ejecuta <code>python scripts/generar.py</code> para registrar participantes y apuestas. Consulta el README para instrucciones detalladas.
+            Ejecuta <code>python scripts/apostar.py</code> para registrar tu predicción de cada partido.
         </div>
     </section>
     <section>
-        <div class="section-title">Partidos</div>
-        <div class="fase-label">Grupos – Grupo A</div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span>🇲🇽 México</span>
-                        <span class="vs">vs</span>
-                        <span>Sudáfrica </span>
+        <div class="section-title"><span class="dot" style="background:var(--verde)"></span>Partidos</div>
+        <div class="fase-label" style="--c:#FF5C4D"><span>Grupos · Grupo A</span></div>
+            <div class="cromo" style="--c:#FF5C4D">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇲🇽</span>
+                        <span class="equipo-nombre">México</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-11</span>
-                        <span class="resultado">2 – 0</span>
+                    <div class="marcador"><span class="resultado">2 – 0</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Sudáfrica</span>
+                        <span class="bandera">🇿🇦</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-11</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span>🇰🇷 Corea del Sur</span>
-                        <span class="vs">vs</span>
-                        <span>Chequia </span>
+            <div class="cromo" style="--c:#FF5C4D">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇰🇷</span>
+                        <span class="equipo-nombre">Corea del Sur</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-11</span>
-                        <span class="resultado">2 – 1</span>
+                    <div class="marcador"><span class="resultado">2 – 1</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Chequia</span>
+                        <span class="bandera">🇨🇿</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-11</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="apuesta acierto">Local ✓</span>
+                    <span class="chip chip-acierto">Corea del Sur ✓</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="apuesta fallo">Empate ✗</span>
+                    <span class="chip chip-fallo">Empate ✗</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Chequia</span>
-                        <span class="vs">vs</span>
-                        <span>Sudáfrica </span>
+            <div class="cromo" style="--c:#FF5C4D">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇨🇿</span>
+                        <span class="equipo-nombre">Chequia</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-18</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Sudáfrica</span>
+                        <span class="bandera">🇿🇦</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-18</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span>🇲🇽 México</span>
-                        <span class="vs">vs</span>
-                        <span>Corea del Sur 🇰🇷</span>
+            <div class="cromo" style="--c:#FF5C4D">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇲🇽</span>
+                        <span class="equipo-nombre">México</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-18</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Corea del Sur</span>
+                        <span class="bandera">🇰🇷</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-18</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Chequia</span>
-                        <span class="vs">vs</span>
-                        <span>México 🇲🇽</span>
+            <div class="cromo" style="--c:#FF5C4D">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇨🇿</span>
+                        <span class="equipo-nombre">Chequia</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-24</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">México</span>
+                        <span class="bandera">🇲🇽</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-24</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Sudáfrica</span>
-                        <span class="vs">vs</span>
-                        <span>Corea del Sur 🇰🇷</span>
+            <div class="cromo" style="--c:#FF5C4D">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇿🇦</span>
+                        <span class="equipo-nombre">Sudáfrica</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-24</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Corea del Sur</span>
+                        <span class="bandera">🇰🇷</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-24</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
-            </div><div class="fase-label">Grupos – Grupo B</div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Canadá</span>
-                        <span class="vs">vs</span>
-                        <span>Bosnia-Herzegovina </span>
+            </div><div class="fase-label" style="--c:#FFB627"><span>Grupos · Grupo B</span></div>
+            <div class="cromo" style="--c:#FFB627">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇨🇦</span>
+                        <span class="equipo-nombre">Canadá</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-12</span>
-                        <span class="resultado">1 – 1</span>
+                    <div class="marcador"><span class="resultado">1 – 1</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Bosnia-Herzegovina</span>
+                        <span class="bandera">🇧🇦</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-12</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="apuesta fallo">Local ✗</span>
+                    <span class="chip chip-fallo">Canadá ✗</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="apuesta fallo">Visitante ✗</span>
+                    <span class="chip chip-fallo">Bosnia-Herzegovina ✗</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Qatar</span>
-                        <span class="vs">vs</span>
-                        <span>Suiza 🇨🇭</span>
+            <div class="cromo" style="--c:#FFB627">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇶🇦</span>
+                        <span class="equipo-nombre">Qatar</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-13</span>
-                        <span class="resultado">1 – 1</span>
+                    <div class="marcador"><span class="resultado">1 – 1</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Suiza</span>
+                        <span class="bandera">🇨🇭</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-13</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="apuesta fallo">Visitante ✗</span>
+                    <span class="chip chip-fallo">Suiza ✗</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="apuesta fallo">Visitante ✗</span>
+                    <span class="chip chip-fallo">Suiza ✗</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span>🇨🇭 Suiza</span>
-                        <span class="vs">vs</span>
-                        <span>Bosnia-Herzegovina </span>
+            <div class="cromo" style="--c:#FFB627">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇨🇭</span>
+                        <span class="equipo-nombre">Suiza</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-18</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Bosnia-Herzegovina</span>
+                        <span class="bandera">🇧🇦</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-18</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Canadá</span>
-                        <span class="vs">vs</span>
-                        <span>Qatar </span>
+            <div class="cromo" style="--c:#FFB627">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇨🇦</span>
+                        <span class="equipo-nombre">Canadá</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-18</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Qatar</span>
+                        <span class="bandera">🇶🇦</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-18</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span>🇨🇭 Suiza</span>
-                        <span class="vs">vs</span>
-                        <span>Canadá </span>
+            <div class="cromo" style="--c:#FFB627">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇨🇭</span>
+                        <span class="equipo-nombre">Suiza</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-24</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Canadá</span>
+                        <span class="bandera">🇨🇦</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-24</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Bosnia-Herzegovina</span>
-                        <span class="vs">vs</span>
-                        <span>Qatar </span>
+            <div class="cromo" style="--c:#FFB627">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇧🇦</span>
+                        <span class="equipo-nombre">Bosnia-Herzegovina</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-24</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Qatar</span>
+                        <span class="bandera">🇶🇦</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-24</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
-            </div><div class="fase-label">Grupos – Grupo D</div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span>🇺🇸 Estados Unidos</span>
-                        <span class="vs">vs</span>
-                        <span>Paraguay </span>
+            </div><div class="fase-label" style="--c:#2EC4F1"><span>Grupos · Grupo D</span></div>
+            <div class="cromo" style="--c:#2EC4F1">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇺🇸</span>
+                        <span class="equipo-nombre">Estados Unidos</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-12</span>
-                        <span class="resultado">4 – 1</span>
+                    <div class="marcador"><span class="resultado">4 – 1</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Paraguay</span>
+                        <span class="bandera">🇵🇾</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-12</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="apuesta fallo">Visitante ✗</span>
+                    <span class="chip chip-fallo">Paraguay ✗</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="apuesta fallo">Empate ✗</span>
+                    <span class="chip chip-fallo">Empate ✗</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span>🇦🇺 Australia</span>
-                        <span class="vs">vs</span>
-                        <span>Turquía </span>
+            <div class="cromo" style="--c:#2EC4F1">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇦🇺</span>
+                        <span class="equipo-nombre">Australia</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-13</span>
-                        <span class="resultado">2 – 0</span>
+                    <div class="marcador"><span class="resultado">2 – 0</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Turquía</span>
+                        <span class="bandera">🇹🇷</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-13</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="apuesta fallo">Visitante ✗</span>
+                    <span class="chip chip-fallo">Turquía ✗</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="apuesta fallo">Visitante ✗</span>
+                    <span class="chip chip-fallo">Turquía ✗</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span>🇺🇸 Estados Unidos</span>
-                        <span class="vs">vs</span>
-                        <span>Australia 🇦🇺</span>
+            <div class="cromo" style="--c:#2EC4F1">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇺🇸</span>
+                        <span class="equipo-nombre">Estados Unidos</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-19</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Australia</span>
+                        <span class="bandera">🇦🇺</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-19</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Turquía</span>
-                        <span class="vs">vs</span>
-                        <span>Paraguay </span>
+            <div class="cromo" style="--c:#2EC4F1">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇹🇷</span>
+                        <span class="equipo-nombre">Turquía</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-19</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Paraguay</span>
+                        <span class="bandera">🇵🇾</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-19</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Turquía</span>
-                        <span class="vs">vs</span>
-                        <span>Estados Unidos 🇺🇸</span>
+            <div class="cromo" style="--c:#2EC4F1">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇹🇷</span>
+                        <span class="equipo-nombre">Turquía</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-25</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Estados Unidos</span>
+                        <span class="bandera">🇺🇸</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-25</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Paraguay</span>
-                        <span class="vs">vs</span>
-                        <span>Australia 🇦🇺</span>
+            <div class="cromo" style="--c:#2EC4F1">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇵🇾</span>
+                        <span class="equipo-nombre">Paraguay</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-25</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Australia</span>
+                        <span class="bandera">🇦🇺</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-25</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
-            </div><div class="fase-label">Grupos – Grupo C</div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span>🇧🇷 Brasil</span>
-                        <span class="vs">vs</span>
-                        <span>Marruecos </span>
+            </div><div class="fase-label" style="--c:#1FAA59"><span>Grupos · Grupo C</span></div>
+            <div class="cromo" style="--c:#1FAA59">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇧🇷</span>
+                        <span class="equipo-nombre">Brasil</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-13</span>
-                        <span class="resultado">1 – 1</span>
+                    <div class="marcador"><span class="resultado">1 – 1</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Marruecos</span>
+                        <span class="bandera">🇲🇦</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-13</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="apuesta fallo">Local ✗</span>
+                    <span class="chip chip-fallo">Brasil ✗</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="apuesta fallo">Local ✗</span>
+                    <span class="chip chip-fallo">Brasil ✗</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Haití</span>
-                        <span class="vs">vs</span>
-                        <span>Escocia </span>
+            <div class="cromo" style="--c:#1FAA59">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇭🇹</span>
+                        <span class="equipo-nombre">Haití</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-13</span>
-                        <span class="resultado">0 – 1</span>
+                    <div class="marcador"><span class="resultado">0 – 1</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Escocia</span>
+                        <span class="bandera">🏴</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-13</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="apuesta acierto">Visitante ✓</span>
+                    <span class="chip chip-acierto">Escocia ✓</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="apuesta acierto">Visitante ✓</span>
+                    <span class="chip chip-acierto">Escocia ✓</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Escocia</span>
-                        <span class="vs">vs</span>
-                        <span>Marruecos </span>
+            <div class="cromo" style="--c:#1FAA59">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🏴</span>
+                        <span class="equipo-nombre">Escocia</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-19</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Marruecos</span>
+                        <span class="bandera">🇲🇦</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-19</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span>🇧🇷 Brasil</span>
-                        <span class="vs">vs</span>
-                        <span>Haití </span>
+            <div class="cromo" style="--c:#1FAA59">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇧🇷</span>
+                        <span class="equipo-nombre">Brasil</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-19</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Haití</span>
+                        <span class="bandera">🇭🇹</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-19</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Escocia</span>
-                        <span class="vs">vs</span>
-                        <span>Brasil 🇧🇷</span>
+            <div class="cromo" style="--c:#1FAA59">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🏴</span>
+                        <span class="equipo-nombre">Escocia</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-24</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Brasil</span>
+                        <span class="bandera">🇧🇷</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-24</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Marruecos</span>
-                        <span class="vs">vs</span>
-                        <span>Haití </span>
+            <div class="cromo" style="--c:#1FAA59">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇲🇦</span>
+                        <span class="equipo-nombre">Marruecos</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-24</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Haití</span>
+                        <span class="bandera">🇭🇹</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-24</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
-            </div><div class="fase-label">Grupos – Grupo E</div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span>🇩🇪 Alemania</span>
-                        <span class="vs">vs</span>
-                        <span>Curazao </span>
+            </div><div class="fase-label" style="--c:#9B5DE5"><span>Grupos · Grupo E</span></div>
+            <div class="cromo" style="--c:#9B5DE5">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇩🇪</span>
+                        <span class="equipo-nombre">Alemania</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-14</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Curazao</span>
+                        <span class="bandera">🇨🇼</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-14</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="apuesta">Local</span>
+                    <span class="chip chip-pendiente">Alemania</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="apuesta">Local</span>
+                    <span class="chip chip-pendiente">Alemania</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Costa de Marfil</span>
-                        <span class="vs">vs</span>
-                        <span>Ecuador </span>
+            <div class="cromo" style="--c:#9B5DE5">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇨🇮</span>
+                        <span class="equipo-nombre">Costa de Marfil</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-14</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Ecuador</span>
+                        <span class="bandera">🇪🇨</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-14</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="apuesta">Empate</span>
+                    <span class="chip chip-pendiente">Empate</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="apuesta">Visitante</span>
+                    <span class="chip chip-pendiente">Ecuador</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span>🇩🇪 Alemania</span>
-                        <span class="vs">vs</span>
-                        <span>Costa de Marfil </span>
+            <div class="cromo" style="--c:#9B5DE5">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇩🇪</span>
+                        <span class="equipo-nombre">Alemania</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-20</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Costa de Marfil</span>
+                        <span class="bandera">🇨🇮</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-20</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Ecuador</span>
-                        <span class="vs">vs</span>
-                        <span>Curazao </span>
+            <div class="cromo" style="--c:#9B5DE5">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇪🇨</span>
+                        <span class="equipo-nombre">Ecuador</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-20</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Curazao</span>
+                        <span class="bandera">🇨🇼</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-20</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Curazao</span>
-                        <span class="vs">vs</span>
-                        <span>Costa de Marfil </span>
+            <div class="cromo" style="--c:#9B5DE5">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇨🇼</span>
+                        <span class="equipo-nombre">Curazao</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-25</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Costa de Marfil</span>
+                        <span class="bandera">🇨🇮</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-25</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Ecuador</span>
-                        <span class="vs">vs</span>
-                        <span>Alemania 🇩🇪</span>
+            <div class="cromo" style="--c:#9B5DE5">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇪🇨</span>
+                        <span class="equipo-nombre">Ecuador</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-25</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Alemania</span>
+                        <span class="bandera">🇩🇪</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-25</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
-            </div><div class="fase-label">Grupos – Grupo F</div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Países Bajos</span>
-                        <span class="vs">vs</span>
-                        <span>Japón 🇯🇵</span>
+            </div><div class="fase-label" style="--c:#FF6FB5"><span>Grupos · Grupo F</span></div>
+            <div class="cromo" style="--c:#FF6FB5">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇳🇱</span>
+                        <span class="equipo-nombre">Países Bajos</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-14</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Japón</span>
+                        <span class="bandera">🇯🇵</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-14</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="apuesta">Empate</span>
+                    <span class="chip chip-pendiente">Empate</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="apuesta">Local</span>
+                    <span class="chip chip-pendiente">Países Bajos</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Suecia</span>
-                        <span class="vs">vs</span>
-                        <span>Túnez 🇹🇳</span>
+            <div class="cromo" style="--c:#FF6FB5">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇸🇪</span>
+                        <span class="equipo-nombre">Suecia</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-14</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Túnez</span>
+                        <span class="bandera">🇹🇳</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-14</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="apuesta">Local</span>
+                    <span class="chip chip-pendiente">Suecia</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="apuesta">Empate</span>
+                    <span class="chip chip-pendiente">Empate</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Países Bajos</span>
-                        <span class="vs">vs</span>
-                        <span>Suecia </span>
+            <div class="cromo" style="--c:#FF6FB5">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇳🇱</span>
+                        <span class="equipo-nombre">Países Bajos</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-20</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Suecia</span>
+                        <span class="bandera">🇸🇪</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-20</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span>🇹🇳 Túnez</span>
-                        <span class="vs">vs</span>
-                        <span>Japón 🇯🇵</span>
+            <div class="cromo" style="--c:#FF6FB5">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇹🇳</span>
+                        <span class="equipo-nombre">Túnez</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-20</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Japón</span>
+                        <span class="bandera">🇯🇵</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-20</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span>🇯🇵 Japón</span>
-                        <span class="vs">vs</span>
-                        <span>Suecia </span>
+            <div class="cromo" style="--c:#FF6FB5">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇯🇵</span>
+                        <span class="equipo-nombre">Japón</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-25</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Suecia</span>
+                        <span class="bandera">🇸🇪</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-25</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span>🇹🇳 Túnez</span>
-                        <span class="vs">vs</span>
-                        <span>Países Bajos </span>
+            <div class="cromo" style="--c:#FF6FB5">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇹🇳</span>
+                        <span class="equipo-nombre">Túnez</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-25</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Países Bajos</span>
+                        <span class="bandera">🇳🇱</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-25</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
-            </div><div class="fase-label">Grupos – Grupo H</div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span>🇪🇸 España</span>
-                        <span class="vs">vs</span>
-                        <span>Cabo Verde </span>
+            </div><div class="fase-label" style="--c:#F8C630"><span>Grupos · Grupo H</span></div>
+            <div class="cromo" style="--c:#F8C630">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇪🇸</span>
+                        <span class="equipo-nombre">España</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-15</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Cabo Verde</span>
+                        <span class="bandera">🇨🇻</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-15</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Arabia Saudita</span>
-                        <span class="vs">vs</span>
-                        <span>Uruguay 🇺🇾</span>
+            <div class="cromo" style="--c:#F8C630">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇸🇦</span>
+                        <span class="equipo-nombre">Arabia Saudita</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-15</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Uruguay</span>
+                        <span class="bandera">🇺🇾</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-15</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span>🇪🇸 España</span>
-                        <span class="vs">vs</span>
-                        <span>Arabia Saudita </span>
+            <div class="cromo" style="--c:#F8C630">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇪🇸</span>
+                        <span class="equipo-nombre">España</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-21</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Arabia Saudita</span>
+                        <span class="bandera">🇸🇦</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-21</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span>🇺🇾 Uruguay</span>
-                        <span class="vs">vs</span>
-                        <span>Cabo Verde </span>
+            <div class="cromo" style="--c:#F8C630">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇺🇾</span>
+                        <span class="equipo-nombre">Uruguay</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-21</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Cabo Verde</span>
+                        <span class="bandera">🇨🇻</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-21</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Cabo Verde</span>
-                        <span class="vs">vs</span>
-                        <span>Arabia Saudita </span>
+            <div class="cromo" style="--c:#F8C630">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇨🇻</span>
+                        <span class="equipo-nombre">Cabo Verde</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-26</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Arabia Saudita</span>
+                        <span class="bandera">🇸🇦</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-26</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span>🇺🇾 Uruguay</span>
-                        <span class="vs">vs</span>
-                        <span>España 🇪🇸</span>
+            <div class="cromo" style="--c:#F8C630">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇺🇾</span>
+                        <span class="equipo-nombre">Uruguay</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-26</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">España</span>
+                        <span class="bandera">🇪🇸</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-26</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
-            </div><div class="fase-label">Grupos – Grupo G</div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Bélgica</span>
-                        <span class="vs">vs</span>
-                        <span>Egipto </span>
+            </div><div class="fase-label" style="--c:#00B8A9"><span>Grupos · Grupo G</span></div>
+            <div class="cromo" style="--c:#00B8A9">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇧🇪</span>
+                        <span class="equipo-nombre">Bélgica</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-15</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Egipto</span>
+                        <span class="bandera">🇪🇬</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-15</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span>🇮🇷 Irán</span>
-                        <span class="vs">vs</span>
-                        <span>Nueva Zelanda </span>
+            <div class="cromo" style="--c:#00B8A9">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇮🇷</span>
+                        <span class="equipo-nombre">Irán</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-15</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Nueva Zelanda</span>
+                        <span class="bandera">🇳🇿</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-15</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Bélgica</span>
-                        <span class="vs">vs</span>
-                        <span>Irán 🇮🇷</span>
+            <div class="cromo" style="--c:#00B8A9">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇧🇪</span>
+                        <span class="equipo-nombre">Bélgica</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-21</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Irán</span>
+                        <span class="bandera">🇮🇷</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-21</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Nueva Zelanda</span>
-                        <span class="vs">vs</span>
-                        <span>Egipto </span>
+            <div class="cromo" style="--c:#00B8A9">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇳🇿</span>
+                        <span class="equipo-nombre">Nueva Zelanda</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-21</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Egipto</span>
+                        <span class="bandera">🇪🇬</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-21</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Egipto</span>
-                        <span class="vs">vs</span>
-                        <span>Irán 🇮🇷</span>
+            <div class="cromo" style="--c:#00B8A9">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇪🇬</span>
+                        <span class="equipo-nombre">Egipto</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-26</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Irán</span>
+                        <span class="bandera">🇮🇷</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-26</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Nueva Zelanda</span>
-                        <span class="vs">vs</span>
-                        <span>Bélgica </span>
+            <div class="cromo" style="--c:#00B8A9">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇳🇿</span>
+                        <span class="equipo-nombre">Nueva Zelanda</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-26</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Bélgica</span>
+                        <span class="bandera">🇧🇪</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-26</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
-            </div><div class="fase-label">Grupos – Grupo I</div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span>🇫🇷 Francia</span>
-                        <span class="vs">vs</span>
-                        <span>Senegal </span>
+            </div><div class="fase-label" style="--c:#4361EE"><span>Grupos · Grupo I</span></div>
+            <div class="cromo" style="--c:#4361EE">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇫🇷</span>
+                        <span class="equipo-nombre">Francia</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-16</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Senegal</span>
+                        <span class="bandera">🇸🇳</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-16</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Irak</span>
-                        <span class="vs">vs</span>
-                        <span>Noruega </span>
+            <div class="cromo" style="--c:#4361EE">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇮🇶</span>
+                        <span class="equipo-nombre">Irak</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-16</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Noruega</span>
+                        <span class="bandera">🇳🇴</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-16</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span>🇫🇷 Francia</span>
-                        <span class="vs">vs</span>
-                        <span>Irak </span>
+            <div class="cromo" style="--c:#4361EE">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇫🇷</span>
+                        <span class="equipo-nombre">Francia</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-22</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Irak</span>
+                        <span class="bandera">🇮🇶</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-22</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Noruega</span>
-                        <span class="vs">vs</span>
-                        <span>Senegal </span>
+            <div class="cromo" style="--c:#4361EE">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇳🇴</span>
+                        <span class="equipo-nombre">Noruega</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-22</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Senegal</span>
+                        <span class="bandera">🇸🇳</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-22</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Noruega</span>
-                        <span class="vs">vs</span>
-                        <span>Francia 🇫🇷</span>
+            <div class="cromo" style="--c:#4361EE">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇳🇴</span>
+                        <span class="equipo-nombre">Noruega</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-26</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Francia</span>
+                        <span class="bandera">🇫🇷</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-26</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Senegal</span>
-                        <span class="vs">vs</span>
-                        <span>Irak </span>
+            <div class="cromo" style="--c:#4361EE">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇸🇳</span>
+                        <span class="equipo-nombre">Senegal</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-26</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Irak</span>
+                        <span class="bandera">🇮🇶</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-26</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
-            </div><div class="fase-label">Grupos – Grupo J</div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span>🇦🇷 Argentina</span>
-                        <span class="vs">vs</span>
-                        <span>Argelia </span>
+            </div><div class="fase-label" style="--c:#F25C54"><span>Grupos · Grupo J</span></div>
+            <div class="cromo" style="--c:#F25C54">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇦🇷</span>
+                        <span class="equipo-nombre">Argentina</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-16</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Argelia</span>
+                        <span class="bandera">🇩🇿</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-16</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Austria</span>
-                        <span class="vs">vs</span>
-                        <span>Jordania </span>
+            <div class="cromo" style="--c:#F25C54">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇦🇹</span>
+                        <span class="equipo-nombre">Austria</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-16</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Jordania</span>
+                        <span class="bandera">🇯🇴</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-16</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span>🇦🇷 Argentina</span>
-                        <span class="vs">vs</span>
-                        <span>Austria </span>
+            <div class="cromo" style="--c:#F25C54">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇦🇷</span>
+                        <span class="equipo-nombre">Argentina</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-22</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Austria</span>
+                        <span class="bandera">🇦🇹</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-22</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Jordania</span>
-                        <span class="vs">vs</span>
-                        <span>Argelia </span>
+            <div class="cromo" style="--c:#F25C54">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇯🇴</span>
+                        <span class="equipo-nombre">Jordania</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-22</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Argelia</span>
+                        <span class="bandera">🇩🇿</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-22</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Argelia</span>
-                        <span class="vs">vs</span>
-                        <span>Austria </span>
+            <div class="cromo" style="--c:#F25C54">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇩🇿</span>
+                        <span class="equipo-nombre">Argelia</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-27</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Austria</span>
+                        <span class="bandera">🇦🇹</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-27</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Jordania</span>
-                        <span class="vs">vs</span>
-                        <span>Argentina 🇦🇷</span>
+            <div class="cromo" style="--c:#F25C54">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇯🇴</span>
+                        <span class="equipo-nombre">Jordania</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-27</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Argentina</span>
+                        <span class="bandera">🇦🇷</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-27</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
-            </div><div class="fase-label">Grupos – Grupo K</div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span>🇵🇹 Portugal</span>
-                        <span class="vs">vs</span>
-                        <span>RD Congo </span>
+            </div><div class="fase-label" style="--c:#5FBB63"><span>Grupos · Grupo K</span></div>
+            <div class="cromo" style="--c:#5FBB63">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇵🇹</span>
+                        <span class="equipo-nombre">Portugal</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-17</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">RD Congo</span>
+                        <span class="bandera">🇨🇩</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-17</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Uzbekistán</span>
-                        <span class="vs">vs</span>
-                        <span>Colombia </span>
+            <div class="cromo" style="--c:#5FBB63">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇺🇿</span>
+                        <span class="equipo-nombre">Uzbekistán</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-17</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Colombia</span>
+                        <span class="bandera">🇨🇴</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-17</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span>🇵🇹 Portugal</span>
-                        <span class="vs">vs</span>
-                        <span>Uzbekistán </span>
+            <div class="cromo" style="--c:#5FBB63">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇵🇹</span>
+                        <span class="equipo-nombre">Portugal</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-23</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Uzbekistán</span>
+                        <span class="bandera">🇺🇿</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-23</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Colombia</span>
-                        <span class="vs">vs</span>
-                        <span>RD Congo </span>
+            <div class="cromo" style="--c:#5FBB63">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇨🇴</span>
+                        <span class="equipo-nombre">Colombia</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-23</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">RD Congo</span>
+                        <span class="bandera">🇨🇩</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-23</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Colombia</span>
-                        <span class="vs">vs</span>
-                        <span>Portugal 🇵🇹</span>
+            <div class="cromo" style="--c:#5FBB63">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇨🇴</span>
+                        <span class="equipo-nombre">Colombia</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-27</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Portugal</span>
+                        <span class="bandera">🇵🇹</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-27</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> RD Congo</span>
-                        <span class="vs">vs</span>
-                        <span>Uzbekistán </span>
+            <div class="cromo" style="--c:#5FBB63">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇨🇩</span>
+                        <span class="equipo-nombre">RD Congo</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-27</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Uzbekistán</span>
+                        <span class="bandera">🇺🇿</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-27</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
-            </div><div class="fase-label">Grupos – Grupo L</div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span>🏴󠁧󠁢󠁥󠁮󠁧󠁿 Inglaterra</span>
-                        <span class="vs">vs</span>
-                        <span>Croacia </span>
+            </div><div class="fase-label" style="--c:#FF9F1C"><span>Grupos · Grupo L</span></div>
+            <div class="cromo" style="--c:#FF9F1C">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🏴</span>
+                        <span class="equipo-nombre">Inglaterra</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-17</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Croacia</span>
+                        <span class="bandera">🇭🇷</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-17</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span>🇬🇭 Ghana</span>
-                        <span class="vs">vs</span>
-                        <span>Panamá </span>
+            <div class="cromo" style="--c:#FF9F1C">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇬🇭</span>
+                        <span class="equipo-nombre">Ghana</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-17</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Panamá</span>
+                        <span class="bandera">🇵🇦</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-17</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span>🏴󠁧󠁢󠁥󠁮󠁧󠁿 Inglaterra</span>
-                        <span class="vs">vs</span>
-                        <span>Ghana 🇬🇭</span>
+            <div class="cromo" style="--c:#FF9F1C">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🏴</span>
+                        <span class="equipo-nombre">Inglaterra</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-23</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Ghana</span>
+                        <span class="bandera">🇬🇭</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-23</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Panamá</span>
-                        <span class="vs">vs</span>
-                        <span>Croacia </span>
+            <div class="cromo" style="--c:#FF9F1C">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇵🇦</span>
+                        <span class="equipo-nombre">Panamá</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-23</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Croacia</span>
+                        <span class="bandera">🇭🇷</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-23</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Panamá</span>
-                        <span class="vs">vs</span>
-                        <span>Inglaterra 🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
+            <div class="cromo" style="--c:#FF9F1C">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇵🇦</span>
+                        <span class="equipo-nombre">Panamá</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-27</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Inglaterra</span>
+                        <span class="bandera">🏴</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-27</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Croacia</span>
-                        <span class="vs">vs</span>
-                        <span>Ghana 🇬🇭</span>
+            <div class="cromo" style="--c:#FF9F1C">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">🇭🇷</span>
+                        <span class="equipo-nombre">Croacia</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-27</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Ghana</span>
+                        <span class="bandera">🇬🇭</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-27</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
-            </div><div class="fase-label">Dieciseisavos</div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Por definir</span>
-                        <span class="vs">vs</span>
-                        <span>Por definir </span>
+            </div><div class="fase-label" style="--c:#16213E"><span>Dieciseisavos</span></div>
+            <div class="cromo" style="--c:#16213E">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">❓</span>
+                        <span class="equipo-nombre">Por definir</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-28</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Por definir</span>
+                        <span class="bandera">❓</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-28</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Por definir</span>
-                        <span class="vs">vs</span>
-                        <span>Por definir </span>
+            <div class="cromo" style="--c:#16213E">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">❓</span>
+                        <span class="equipo-nombre">Por definir</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-28</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Por definir</span>
+                        <span class="bandera">❓</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-28</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Por definir</span>
-                        <span class="vs">vs</span>
-                        <span>Por definir </span>
+            <div class="cromo" style="--c:#16213E">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">❓</span>
+                        <span class="equipo-nombre">Por definir</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-29</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Por definir</span>
+                        <span class="bandera">❓</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-29</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Por definir</span>
-                        <span class="vs">vs</span>
-                        <span>Por definir </span>
+            <div class="cromo" style="--c:#16213E">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">❓</span>
+                        <span class="equipo-nombre">Por definir</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-29</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Por definir</span>
+                        <span class="bandera">❓</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-29</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Por definir</span>
-                        <span class="vs">vs</span>
-                        <span>Por definir </span>
+            <div class="cromo" style="--c:#16213E">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">❓</span>
+                        <span class="equipo-nombre">Por definir</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-30</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Por definir</span>
+                        <span class="bandera">❓</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-30</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Por definir</span>
-                        <span class="vs">vs</span>
-                        <span>Por definir </span>
+            <div class="cromo" style="--c:#16213E">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">❓</span>
+                        <span class="equipo-nombre">Por definir</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-06-30</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Por definir</span>
+                        <span class="bandera">❓</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-06-30</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Por definir</span>
-                        <span class="vs">vs</span>
-                        <span>Por definir </span>
+            <div class="cromo" style="--c:#16213E">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">❓</span>
+                        <span class="equipo-nombre">Por definir</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-07-01</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Por definir</span>
+                        <span class="bandera">❓</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-07-01</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Por definir</span>
-                        <span class="vs">vs</span>
-                        <span>Por definir </span>
+            <div class="cromo" style="--c:#16213E">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">❓</span>
+                        <span class="equipo-nombre">Por definir</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-07-01</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Por definir</span>
+                        <span class="bandera">❓</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-07-01</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Por definir</span>
-                        <span class="vs">vs</span>
-                        <span>Por definir </span>
+            <div class="cromo" style="--c:#16213E">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">❓</span>
+                        <span class="equipo-nombre">Por definir</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-07-02</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Por definir</span>
+                        <span class="bandera">❓</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-07-02</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Por definir</span>
-                        <span class="vs">vs</span>
-                        <span>Por definir </span>
+            <div class="cromo" style="--c:#16213E">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">❓</span>
+                        <span class="equipo-nombre">Por definir</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-07-02</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Por definir</span>
+                        <span class="bandera">❓</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-07-02</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Por definir</span>
-                        <span class="vs">vs</span>
-                        <span>Por definir </span>
+            <div class="cromo" style="--c:#16213E">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">❓</span>
+                        <span class="equipo-nombre">Por definir</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-07-03</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Por definir</span>
+                        <span class="bandera">❓</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-07-03</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Por definir</span>
-                        <span class="vs">vs</span>
-                        <span>Por definir </span>
+            <div class="cromo" style="--c:#16213E">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">❓</span>
+                        <span class="equipo-nombre">Por definir</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-07-03</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Por definir</span>
+                        <span class="bandera">❓</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-07-03</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
-            </div><div class="fase-label">Octavos</div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Por definir</span>
-                        <span class="vs">vs</span>
-                        <span>Por definir </span>
+            </div><div class="fase-label" style="--c:#16213E"><span>Octavos</span></div>
+            <div class="cromo" style="--c:#16213E">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">❓</span>
+                        <span class="equipo-nombre">Por definir</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-07-04</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Por definir</span>
+                        <span class="bandera">❓</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-07-04</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Por definir</span>
-                        <span class="vs">vs</span>
-                        <span>Por definir </span>
+            <div class="cromo" style="--c:#16213E">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">❓</span>
+                        <span class="equipo-nombre">Por definir</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-07-04</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Por definir</span>
+                        <span class="bandera">❓</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-07-04</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Por definir</span>
-                        <span class="vs">vs</span>
-                        <span>Por definir </span>
+            <div class="cromo" style="--c:#16213E">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">❓</span>
+                        <span class="equipo-nombre">Por definir</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-07-05</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Por definir</span>
+                        <span class="bandera">❓</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-07-05</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Por definir</span>
-                        <span class="vs">vs</span>
-                        <span>Por definir </span>
+            <div class="cromo" style="--c:#16213E">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">❓</span>
+                        <span class="equipo-nombre">Por definir</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-07-05</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Por definir</span>
+                        <span class="bandera">❓</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-07-05</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Por definir</span>
-                        <span class="vs">vs</span>
-                        <span>Por definir </span>
+            <div class="cromo" style="--c:#16213E">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">❓</span>
+                        <span class="equipo-nombre">Por definir</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-07-06</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Por definir</span>
+                        <span class="bandera">❓</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-07-06</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Por definir</span>
-                        <span class="vs">vs</span>
-                        <span>Por definir </span>
+            <div class="cromo" style="--c:#16213E">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">❓</span>
+                        <span class="equipo-nombre">Por definir</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-07-06</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Por definir</span>
+                        <span class="bandera">❓</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-07-06</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Por definir</span>
-                        <span class="vs">vs</span>
-                        <span>Por definir </span>
+            <div class="cromo" style="--c:#16213E">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">❓</span>
+                        <span class="equipo-nombre">Por definir</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-07-07</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Por definir</span>
+                        <span class="bandera">❓</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-07-07</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Por definir</span>
-                        <span class="vs">vs</span>
-                        <span>Por definir </span>
+            <div class="cromo" style="--c:#16213E">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">❓</span>
+                        <span class="equipo-nombre">Por definir</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-07-07</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Por definir</span>
+                        <span class="bandera">❓</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-07-07</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
-            </div><div class="fase-label">Cuartos</div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Por definir</span>
-                        <span class="vs">vs</span>
-                        <span>Por definir </span>
+            </div><div class="fase-label" style="--c:#16213E"><span>Cuartos</span></div>
+            <div class="cromo" style="--c:#16213E">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">❓</span>
+                        <span class="equipo-nombre">Por definir</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-07-09</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Por definir</span>
+                        <span class="bandera">❓</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-07-09</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Por definir</span>
-                        <span class="vs">vs</span>
-                        <span>Por definir </span>
+            <div class="cromo" style="--c:#16213E">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">❓</span>
+                        <span class="equipo-nombre">Por definir</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-07-09</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Por definir</span>
+                        <span class="bandera">❓</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-07-09</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Por definir</span>
-                        <span class="vs">vs</span>
-                        <span>Por definir </span>
+            <div class="cromo" style="--c:#16213E">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">❓</span>
+                        <span class="equipo-nombre">Por definir</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-07-10</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Por definir</span>
+                        <span class="bandera">❓</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-07-10</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Por definir</span>
-                        <span class="vs">vs</span>
-                        <span>Por definir </span>
+            <div class="cromo" style="--c:#16213E">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">❓</span>
+                        <span class="equipo-nombre">Por definir</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-07-10</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Por definir</span>
+                        <span class="bandera">❓</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-07-10</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Por definir</span>
-                        <span class="vs">vs</span>
-                        <span>Por definir </span>
+            <div class="cromo" style="--c:#16213E">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">❓</span>
+                        <span class="equipo-nombre">Por definir</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-07-11</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Por definir</span>
+                        <span class="bandera">❓</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-07-11</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Por definir</span>
-                        <span class="vs">vs</span>
-                        <span>Por definir </span>
+            <div class="cromo" style="--c:#16213E">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">❓</span>
+                        <span class="equipo-nombre">Por definir</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-07-11</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Por definir</span>
+                        <span class="bandera">❓</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-07-11</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
-            </div><div class="fase-label">Semifinales</div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Por definir</span>
-                        <span class="vs">vs</span>
-                        <span>Por definir </span>
+            </div><div class="fase-label" style="--c:#16213E"><span>Semifinales</span></div>
+            <div class="cromo" style="--c:#16213E">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">❓</span>
+                        <span class="equipo-nombre">Por definir</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-07-14</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Por definir</span>
+                        <span class="bandera">❓</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-07-14</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Por definir</span>
-                        <span class="vs">vs</span>
-                        <span>Por definir </span>
+            <div class="cromo" style="--c:#16213E">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">❓</span>
+                        <span class="equipo-nombre">Por definir</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-07-15</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Por definir</span>
+                        <span class="bandera">❓</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-07-15</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
-            </div><div class="fase-label">Tercer puesto</div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Por definir</span>
-                        <span class="vs">vs</span>
-                        <span>Por definir </span>
+            </div><div class="fase-label" style="--c:#16213E"><span>Tercer puesto</span></div>
+            <div class="cromo" style="--c:#16213E">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">❓</span>
+                        <span class="equipo-nombre">Por definir</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-07-18</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Por definir</span>
+                        <span class="bandera">❓</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-07-18</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
-            </div><div class="fase-label">Final</div>
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span> Por definir</span>
-                        <span class="vs">vs</span>
-                        <span>Por definir </span>
+            </div><div class="fase-label" style="--c:#16213E"><span>Final</span></div>
+            <div class="cromo" style="--c:#16213E">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">❓</span>
+                        <span class="equipo-nombre">Por definir</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">2026-07-19</span>
-                        <span class="sin-resultado">Pendiente</span>
+                    <div class="marcador"><span class="sin-resultado">vs</span></div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">Por definir</span>
+                        <span class="bandera">❓</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">2026-07-19</div>
                 <div class="apuestas-grid">
                     
                 <div class="apuesta-row">
                     <span class="part-nombre">Luna</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 <div class="apuesta-row">
                     <span class="part-nombre">Dani</span>
-                    <span class="no-apuesta">—</span>
+                    <span class="chip chip-vacio">sin apuesta</span>
                 </div>
                 </div>
             </div>
     </section>
 </main>
-<footer>Generado con Python · Mundial 2026</footer>
+<footer>Hecho con Python para el Mundial 2026 🌎</footer>
 </body>
 </html>

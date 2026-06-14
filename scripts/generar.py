@@ -1,21 +1,33 @@
 import json
-import os
 from pathlib import Path
 
 DATA_FILE = Path(__file__).parent.parent / "data" / "partidos.json"
 OUT_FILE = Path(__file__).parent.parent / "docs" / "index.html"
 
 BANDERAS = {
-    "México": "🇲🇽", "Polonia": "🇵🇱", "Arabia Saudí": "🇸🇦", "Argentina": "🇦🇷",
-    "Estados Unidos": "🇺🇸", "Gales": "🏴󠁧󠁢󠁷󠁬󠁳󠁿", "Inglaterra": "🏴󠁧󠁢󠁥󠁮󠁧󠁿", "Irán": "🇮🇷",
-    "Francia": "🇫🇷", "Australia": "🇦🇺", "Dinamarca": "🇩🇰", "Túnez": "🇹🇳",
-    "España": "🇪🇸", "Costa Rica": "🇨🇷", "Alemania": "🇩🇪", "Japón": "🇯🇵",
-    "Brasil": "🇧🇷", "Serbia": "🇷🇸", "Suiza": "🇨🇭", "Camerún": "🇨🇲",
-    "Portugal": "🇵🇹", "Ghana": "🇬🇭", "Uruguay": "🇺🇾", "Corea del Sur": "🇰🇷"
+    "México": "🇲🇽", "Sudáfrica": "🇿🇦", "Corea del Sur": "🇰🇷", "Chequia": "🇨🇿",
+    "Canadá": "🇨🇦", "Bosnia-Herzegovina": "🇧🇦", "Qatar": "🇶🇦", "Suiza": "🇨🇭",
+    "Brasil": "🇧🇷", "Marruecos": "🇲🇦", "Haití": "🇭🇹", "Escocia": "🏴",
+    "Estados Unidos": "🇺🇸", "Paraguay": "🇵🇾", "Australia": "🇦🇺", "Turquía": "🇹🇷",
+    "Alemania": "🇩🇪", "Curazao": "🇨🇼", "Costa de Marfil": "🇨🇮", "Ecuador": "🇪🇨",
+    "Países Bajos": "🇳🇱", "Japón": "🇯🇵", "Suecia": "🇸🇪", "Túnez": "🇹🇳",
+    "España": "🇪🇸", "Cabo Verde": "🇨🇻", "Arabia Saudita": "🇸🇦", "Uruguay": "🇺🇾",
+    "Bélgica": "🇧🇪", "Egipto": "🇪🇬", "Irán": "🇮🇷", "Nueva Zelanda": "🇳🇿",
+    "Francia": "🇫🇷", "Senegal": "🇸🇳", "Irak": "🇮🇶", "Noruega": "🇳🇴",
+    "Argentina": "🇦🇷", "Argelia": "🇩🇿", "Austria": "🇦🇹", "Jordania": "🇯🇴",
+    "Portugal": "🇵🇹", "RD Congo": "🇨🇩", "Uzbekistán": "🇺🇿", "Colombia": "🇨🇴",
+    "Inglaterra": "🏴", "Croacia": "🇭🇷", "Ghana": "🇬🇭", "Panamá": "🇵🇦",
+    "Por definir": "❓"
 }
 
 PUNTOS_ACIERTO = 1
 PUNTOS_EMPATE_ACIERTO = 1
+
+COLORES_GRUPO = {
+    "A": "#FF5C4D", "B": "#FFB627", "C": "#1FAA59", "D": "#2EC4F1",
+    "E": "#9B5DE5", "F": "#FF6FB5", "G": "#00B8A9", "H": "#F8C630",
+    "I": "#4361EE", "J": "#F25C54", "K": "#5FBB63", "L": "#FF9F1C",
+}
 
 
 def calcular_ganador(rl, rv):
@@ -45,8 +57,7 @@ def calcular_puntuaciones(data):
             if apuesta is None:
                 continue
             puntuaciones[nombre]["jugados"] += 1
-            ganador_apostado = apuesta["ganador"]
-            if ganador_apostado == ganador_real:
+            if apuesta["ganador"] == ganador_real:
                 pts = PUNTOS_ACIERTO if ganador_real != "empate" else PUNTOS_EMPATE_ACIERTO
                 puntuaciones[nombre]["puntos"] += pts
                 puntuaciones[nombre]["aciertos"] += 1
@@ -55,58 +66,67 @@ def calcular_puntuaciones(data):
 
 
 def flag(equipo):
-    return BANDERAS.get(equipo, "")
+    return BANDERAS.get(equipo, "🏳")
+
+
+def grupo_color(grupo):
+    return COLORES_GRUPO.get(grupo, "#888")
 
 
 def resultado_texto(partido):
     rl = partido["resultado_local"]
     rv = partido["resultado_visitante"]
     if rl is None:
-        return '<span class="sin-resultado">Pendiente</span>'
+        return '<span class="sin-resultado">vs</span>'
     return f'<span class="resultado">{rl} – {rv}</span>'
 
 
-def apuesta_usuario_html(participante, partido_id, ganador_real):
+def apuesta_usuario_html(participante, partido_id, local, visitante, ganador_real):
     apuesta = next((a for a in participante.get("apuestas", []) if a["partido_id"] == partido_id), None)
     if apuesta is None:
-        return '<span class="no-apuesta">—</span>'
+        return '<span class="chip chip-vacio">sin apuesta</span>'
     g = apuesta["ganador"]
-    etiquetas = {"local": "Local", "visitante": "Visitante", "empate": "Empate"}
+    etiquetas = {"local": local, "visitante": visitante, "empate": "Empate"}
     label = etiquetas.get(g, g)
     if ganador_real is None:
-        return f'<span class="apuesta">{label}</span>'
+        return f'<span class="chip chip-pendiente">{label}</span>'
     acierto = g == ganador_real
-    cls = "acierto" if acierto else "fallo"
+    cls = "chip-acierto" if acierto else "chip-fallo"
     icono = "✓" if acierto else "✗"
-    return f'<span class="apuesta {cls}">{label} {icono}</span>'
+    return f'<span class="chip {cls}">{label} {icono}</span>'
 
 
-def build_clasificacion_html(ranking, total_partidos):
+def build_clasificacion_html(ranking):
     if not ranking:
-        return '<p class="empty-msg">Aún no hay participantes registrados.</p>'
+        return '<p class="empty-msg">¡Nadie ha apostado todavía! Sé el primero ⚡</p>'
 
-    max_pts = ranking[0][1]["puntos"] if ranking else 1
+    max_pts = max((s["puntos"] for _, s in ranking), default=0)
     if max_pts == 0:
         max_pts = 1
 
+    medallas = ["🥇", "🥈", "🥉"]
+    colores_pos = ["#FFD23F", "#C8D3DB", "#FFB36B"]
+
     html = '<div class="clasificacion">'
     for i, (nombre, stats) in enumerate(ranking):
-        pct = round((stats["puntos"] / (total_partidos * PUNTOS_ACIERTO)) * 100) if total_partidos > 0 else 0
-        pct = min(pct, 100)
         bar_fill = round((stats["puntos"] / max_pts) * 100)
-        medallas = ["🥇", "🥈", "🥉"]
-        pos_icon = medallas[i] if i < 3 else f"{i+1}."
+        medalla = medallas[i] if i < 3 else None
+        top3_cls = " top3" if i < 3 else ""
+        borde = colores_pos[i] if i < 3 else "var(--marino-10)"
+        inicial = nombre[0].upper()
         html += f"""
-        <div class="jugador-row">
-            <div class="jugador-info">
-                <span class="pos">{pos_icon}</span>
-                <span class="nombre">{nombre}</span>
-                <span class="stats">{stats['aciertos']} aciertos · {stats['jugados']} jugados</span>
+        <div class="jugador-row{top3_cls}" style="--borde-pos:{borde}">
+            <div class="avatar">{medalla or inicial}</div>
+            <div class="jugador-main">
+                <div class="jugador-top">
+                    <span class="nombre">{nombre}</span>
+                    <span class="pts">{stats['puntos']} pts</span>
+                </div>
+                <div class="barra-wrap">
+                    <div class="barra-fill" style="width: {bar_fill}%"></div>
+                </div>
+                <span class="stats">{stats['aciertos']} aciertos de {stats['jugados']} jugados</span>
             </div>
-            <div class="barra-wrap">
-                <div class="barra-fill" style="width: {bar_fill}%"></div>
-            </div>
-            <span class="pts">{stats['puntos']} pts</span>
         </div>"""
     html += '</div>'
     return html
@@ -115,43 +135,50 @@ def build_clasificacion_html(ranking, total_partidos):
 def build_partidos_html(data):
     fases = {}
     for p in data["partidos"]:
-        key = p["fase"] + (" – Grupo " + p["grupo"] if p.get("grupo") else "")
+        key = p["fase"] + (" · Grupo " + p["grupo"] if p.get("grupo") else "")
         fases.setdefault(key, []).append(p)
 
     participantes = data["participantes"]
     html = ""
 
     for fase, partidos in fases.items():
-        html += f'<div class="fase-label">{fase}</div>'
+        grupo = partidos[0].get("grupo")
+        color = grupo_color(grupo) if grupo else "#16213E"
+        html += f'<div class="fase-label" style="--c:{color}"><span>{fase}</span></div>'
         for partido in partidos:
             pid = partido["id"]
+            local = partido["local"]
+            visitante = partido["visitante"]
             rl = partido["resultado_local"]
             rv = partido["resultado_visitante"]
             ganador_real = calcular_ganador(rl, rv) if rl is not None else None
 
-            apuestas_html = ""
+            chips_html = ""
             for part in participantes:
-                apuestas_html += f"""
+                chips_html += f"""
                 <div class="apuesta-row">
                     <span class="part-nombre">{part['nombre']}</span>
-                    {apuesta_usuario_html(part, pid, ganador_real)}
+                    {apuesta_usuario_html(part, pid, local, visitante, ganador_real)}
                 </div>"""
+            if not chips_html:
+                chips_html = '<span class="chip chip-vacio">Sin apuestas aún</span>'
 
             html += f"""
-            <div class="partido-card">
-                <div class="partido-header">
-                    <div class="equipos">
-                        <span>{flag(partido['local'])} {partido['local']}</span>
-                        <span class="vs">vs</span>
-                        <span>{partido['visitante']} {flag(partido['visitante'])}</span>
+            <div class="cromo" style="--c:{color}">
+                <div class="cromo-top">
+                    <div class="equipo">
+                        <span class="bandera">{flag(local)}</span>
+                        <span class="equipo-nombre">{local}</span>
                     </div>
-                    <div class="partido-meta">
-                        <span class="fecha">{partido['fecha']}</span>
-                        {resultado_texto(partido)}
+                    <div class="marcador">{resultado_texto(partido)}</div>
+                    <div class="equipo equipo-derecha">
+                        <span class="equipo-nombre">{visitante}</span>
+                        <span class="bandera">{flag(visitante)}</span>
                     </div>
                 </div>
+                <div class="cromo-fecha">{partido['fecha']}</div>
                 <div class="apuestas-grid">
-                    {apuestas_html if apuestas_html else '<span class="no-apuesta">Sin apuestas aún</span>'}
+                    {chips_html}
                 </div>
             </div>"""
     return html
@@ -159,15 +186,11 @@ def build_partidos_html(data):
 
 def build_html(data):
     ranking = calcular_puntuaciones(data)
-    total_partidos_jugados = sum(
-        1 for p in data["partidos"]
-        if p["resultado_local"] is not None
-    )
     total_partidos = len(data["partidos"])
-    estado_apuestas = "abiertas" if data.get("apuestas_abiertas") else "cerradas"
+    estado_apuestas = "ABIERTAS" if data.get("apuestas_abiertas") else "CERRADAS"
     badge_cls = "badge-open" if data.get("apuestas_abiertas") else "badge-closed"
 
-    clasificacion_html = build_clasificacion_html(ranking, total_partidos_jugados)
+    clasificacion_html = build_clasificacion_html(ranking)
     partidos_html = build_partidos_html(data)
 
     return f"""<!DOCTYPE html>
@@ -175,200 +198,250 @@ def build_html(data):
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{data['torneo']} · Apuestas</title>
+<title>{data['torneo']} · Quiniela</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Barlow+Condensed:wght@600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {{
-    --verde: #00C46A;
-    --verde-dark: #009950;
-    --negro: #0D0D0D;
-    --gris-oscuro: #1A1A1A;
-    --gris-medio: #2A2A2A;
-    --gris-borde: #333;
-    --texto: #F0F0F0;
-    --texto-suave: #888;
-    --oro: #FFD060;
-    --rojo: #FF4D4D;
-    --accent: #00C46A;
+    --crema: #FFF8EC;
+    --marino: #16213E;
+    --marino-10: rgba(22,33,62,0.1);
+    --amarillo: #FFD23F;
+    --coral: #FF5C4D;
+    --azul: #2EC4F1;
+    --verde: #1FAA59;
+    --gris: #8D99AE;
 }}
 *, *::before, *::after {{ box-sizing: border-box; margin: 0; padding: 0; }}
 body {{
-    font-family: 'Space Grotesk', sans-serif;
-    background: var(--negro);
-    color: var(--texto);
+    font-family: 'Inter', sans-serif;
+    background: var(--crema);
+    background-image:
+        radial-gradient(circle at 8% 18%, rgba(46,196,241,0.12) 0, transparent 35%),
+        radial-gradient(circle at 92% 12%, rgba(255,210,63,0.18) 0, transparent 35%),
+        radial-gradient(circle at 85% 80%, rgba(255,92,77,0.10) 0, transparent 40%);
+    color: var(--marino);
     min-height: 100vh;
 }}
 header {{
-    background: var(--gris-oscuro);
-    border-bottom: 2px solid var(--verde);
-    padding: 24px 32px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 12px;
+    position: relative;
+    background: var(--marino);
+    padding: 36px 24px 30px;
+    text-align: center;
+    overflow: hidden;
+    border-bottom: 6px solid var(--amarillo);
 }}
+header::before, header::after {{
+    content: "⚽";
+    position: absolute;
+    font-size: 4rem;
+    opacity: 0.08;
+}}
+header::before {{ top: -10px; left: -10px; transform: rotate(-15deg); }}
+header::after {{ bottom: -20px; right: -10px; transform: rotate(20deg); }}
 .header-title {{
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 2rem;
-    font-weight: 800;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: var(--verde);
+    font-family: 'Fredoka', sans-serif;
+    font-size: clamp(1.8rem, 6vw, 2.8rem);
+    font-weight: 700;
+    color: var(--crema);
+    letter-spacing: 0.02em;
 }}
+.header-title .accent {{ color: var(--amarillo); }}
 .header-sub {{
-    font-size: 0.85rem;
-    color: var(--texto-suave);
-    margin-top: 2px;
+    font-size: 0.9rem;
+    color: var(--azul);
+    margin-top: 6px;
+    font-weight: 500;
 }}
 .badge {{
-    font-size: 0.75rem;
-    font-weight: 700;
-    padding: 4px 12px;
+    display: inline-block;
+    margin-top: 14px;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 6px 18px;
     border-radius: 999px;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.1em;
 }}
-.badge-open {{ background: var(--verde); color: #000; }}
-.badge-closed {{ background: #444; color: var(--texto-suave); }}
-main {{ max-width: 900px; margin: 0 auto; padding: 32px 16px; }}
-section {{ margin-bottom: 48px; }}
+.badge-open {{ background: var(--amarillo); color: var(--marino); }}
+.badge-closed {{ background: var(--coral); color: var(--crema); }}
+main {{ max-width: 880px; margin: 0 auto; padding: 28px 16px 60px; }}
+section {{ margin-bottom: 44px; }}
 .section-title {{
-    font-family: 'Barlow Condensed', sans-serif;
+    font-family: 'Fredoka', sans-serif;
     font-size: 1.3rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: var(--verde);
-    border-left: 4px solid var(--verde);
-    padding-left: 12px;
-    margin-bottom: 20px;
-}}
-.clasificacion {{ display: flex; flex-direction: column; gap: 12px; }}
-.jugador-row {{
-    display: grid;
-    grid-template-columns: 1fr auto auto;
+    font-weight: 600;
+    color: var(--marino);
+    margin-bottom: 18px;
+    display: flex;
     align-items: center;
-    gap: 16px;
-    background: var(--gris-oscuro);
-    border: 1px solid var(--gris-borde);
-    border-radius: 8px;
-    padding: 14px 18px;
+    gap: 10px;
 }}
-.jugador-info {{ display: flex; align-items: center; gap: 10px; min-width: 0; }}
-.pos {{ font-size: 1.2rem; flex-shrink: 0; }}
-.nombre {{ font-weight: 700; font-size: 1rem; }}
-.stats {{ font-size: 0.78rem; color: var(--texto-suave); white-space: nowrap; }}
-.barra-wrap {{
-    width: 120px;
-    height: 8px;
-    background: var(--gris-medio);
-    border-radius: 4px;
-    overflow: hidden;
+.section-title .dot {{
+    width: 14px; height: 14px;
+    background: var(--coral);
+    border-radius: 50%;
+    display: inline-block;
+}}
+
+/* Clasificación */
+.clasificacion {{ display: flex; flex-direction: column; gap: 10px; }}
+.jugador-row {{
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: #fff;
+    border: 2px solid var(--marino-10);
+    border-radius: 16px;
+    padding: 12px 16px;
+}}
+.jugador-row.top3 {{ border-color: var(--borde-pos); border-width: 2.5px; }}
+.avatar {{
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    background: var(--crema);
+    border: 2px solid var(--borde-pos, var(--marino-10));
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 600;
+    font-size: 1.1rem;
     flex-shrink: 0;
 }}
-.barra-fill {{
-    height: 100%;
-    background: linear-gradient(90deg, var(--verde-dark), var(--verde));
-    border-radius: 4px;
-    transition: width 0.6s ease;
+.jugador-main {{ flex: 1; min-width: 0; }}
+.jugador-top {{
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 6px; gap: 8px;
 }}
-.pts {{ font-weight: 700; font-size: 1rem; color: var(--oro); white-space: nowrap; }}
+.nombre {{ font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: 1.02rem; }}
+.pts {{ font-family: 'Fredoka', sans-serif; font-weight: 700; font-size: 1rem; color: var(--coral); white-space: nowrap; }}
+.barra-wrap {{ width: 100%; height: 8px; background: var(--marino-10); border-radius: 999px; overflow: hidden; margin-bottom: 4px; }}
+.barra-fill {{ height: 100%; background: linear-gradient(90deg, var(--azul), var(--verde)); border-radius: 999px; transition: width 0.6s ease; }}
+.stats {{ font-size: 0.74rem; color: var(--gris); }}
+
+/* Fase label */
 .fase-label {{
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.85rem;
+    margin: 28px 0 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}}
+.fase-label span {{
+    font-family: 'Fredoka', sans-serif;
+    font-size: 0.82rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: var(--texto-suave);
-    margin: 24px 0 10px;
+    background: var(--c);
+    color: #fff;
+    padding: 5px 14px;
+    border-radius: 999px;
 }}
-.partido-card {{
-    background: var(--gris-oscuro);
-    border: 1px solid var(--gris-borde);
-    border-radius: 10px;
-    margin-bottom: 12px;
-    overflow: hidden;
+.fase-label::after {{
+    content: "";
+    flex: 1;
+    height: 2px;
+    background: repeating-linear-gradient(90deg, var(--c) 0 6px, transparent 6px 12px);
+    opacity: 0.4;
 }}
-.partido-header {{
-    display: flex;
-    justify-content: space-between;
+
+/* Cromo (match card) */
+.cromo {{
+    background: #fff;
+    border-radius: 18px;
+    border: 2.5px dashed var(--c);
+    padding: 16px 18px;
+    margin-bottom: 14px;
+    position: relative;
+}}
+.cromo-top {{
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    padding: 14px 18px;
-    border-bottom: 1px solid var(--gris-borde);
-    flex-wrap: wrap;
     gap: 8px;
 }}
-.equipos {{ display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 0.95rem; }}
-.vs {{ color: var(--texto-suave); font-size: 0.8rem; }}
-.partido-meta {{ display: flex; align-items: center; gap: 12px; }}
-.fecha {{ font-size: 0.78rem; color: var(--texto-suave); }}
-.sin-resultado {{ font-size: 0.8rem; color: var(--texto-suave); font-style: italic; }}
-.resultado {{ font-weight: 700; font-size: 1rem; color: var(--verde); }}
+.equipo {{ display: flex; align-items: center; gap: 8px; min-width: 0; }}
+.equipo-derecha {{ justify-content: flex-end; text-align: right; }}
+.bandera {{ font-size: 1.6rem; flex-shrink: 0; }}
+.equipo-nombre {{ font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: 0.95rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }}
+.marcador {{ text-align: center; min-width: 60px; }}
+.resultado {{ font-family: 'Fredoka', sans-serif; font-weight: 700; font-size: 1.3rem; color: var(--marino); }}
+.sin-resultado {{ font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: 1rem; color: var(--gris); }}
+.cromo-fecha {{ text-align: center; font-size: 0.72rem; color: var(--gris); margin-top: 6px; letter-spacing: 0.05em; }}
 .apuestas-grid {{
-    padding: 10px 18px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--marino-10);
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 10px;
 }}
-.apuesta-row {{ display: flex; align-items: center; gap: 8px; }}
-.part-nombre {{ font-size: 0.8rem; color: var(--texto-suave); }}
-.apuesta {{ font-size: 0.78rem; font-weight: 600; padding: 2px 8px; border-radius: 4px; background: var(--gris-medio); }}
-.apuesta.acierto {{ background: rgba(0,196,106,0.2); color: var(--verde); }}
-.apuesta.fallo {{ background: rgba(255,77,77,0.15); color: var(--rojo); }}
-.no-apuesta {{ font-size: 0.78rem; color: #555; }}
-.empty-msg {{ color: var(--texto-suave); font-style: italic; font-size: 0.9rem; }}
+.apuesta-row {{ display: flex; align-items: center; gap: 6px; }}
+.part-nombre {{ font-size: 0.76rem; color: var(--gris); font-weight: 500; }}
+.chip {{
+    font-family: 'Fredoka', sans-serif;
+    font-size: 0.74rem; font-weight: 600;
+    padding: 3px 10px; border-radius: 999px;
+    background: var(--crema);
+    border: 1.5px solid var(--marino-10);
+}}
+.chip-acierto {{ background: rgba(31,170,89,0.12); border-color: var(--verde); color: var(--verde); }}
+.chip-fallo {{ background: rgba(255,92,77,0.10); border-color: var(--coral); color: var(--coral); }}
+.chip-vacio {{ color: var(--gris); border-style: dashed; }}
+
 .info-box {{
-    background: var(--gris-oscuro);
-    border: 1px solid var(--gris-borde);
-    border-left: 3px solid var(--verde);
-    border-radius: 8px;
+    background: #fff;
+    border: 2px solid var(--marino-10);
+    border-left: 5px solid var(--azul);
+    border-radius: 14px;
     padding: 16px 20px;
     font-size: 0.88rem;
-    color: var(--texto-suave);
+    color: var(--marino);
     line-height: 1.6;
 }}
-.info-box strong {{ color: var(--texto); }}
+.info-box code {{
+    background: var(--crema);
+    padding: 2px 6px;
+    border-radius: 6px;
+    font-size: 0.82rem;
+}}
+.empty-msg {{ color: var(--gris); font-style: italic; font-size: 0.9rem; }}
 footer {{
     text-align: center;
-    padding: 32px;
-    font-size: 0.78rem;
-    color: #444;
+    padding: 28px;
+    font-size: 0.76rem;
+    color: var(--gris);
 }}
-@media (max-width: 600px) {{
-    .barra-wrap {{ width: 70px; }}
-    .jugador-row {{ grid-template-columns: 1fr auto; }}
-    .barra-wrap {{ display: none; }}
+@media (max-width: 480px) {{
+    .equipo-nombre {{ font-size: 0.82rem; }}
+    .bandera {{ font-size: 1.3rem; }}
 }}
 </style>
 </head>
 <body>
 <header>
-    <div>
-        <div class="header-title">⚽ {data['torneo']} · Quiniela</div>
-        <div class="header-sub">Predicción de ganadores · {total_partidos} partidos</div>
-    </div>
+    <div class="header-title">⚽ {data['torneo']} <span class="accent">· Quiniela</span></div>
+    <div class="header-sub">{total_partidos} partidos · ¿quién sabe más de fútbol?</div>
     <span class="badge {badge_cls}">Apuestas {estado_apuestas}</span>
 </header>
 <main>
     <section>
-        <div class="section-title">Clasificación</div>
+        <div class="section-title"><span class="dot"></span>Clasificación</div>
         {clasificacion_html}
     </section>
     <section>
-        <div class="section-title">Cómo apuntar tu apuesta</div>
+        <div class="section-title"><span class="dot" style="background:var(--azul)"></span>Cómo apostar</div>
         <div class="info-box">
-            <strong>Las apuestas están {estado_apuestas}.</strong><br>
-            {"Edita el archivo <code>data/partidos.json</code> y ejecuta <code>python scripts/generar.py</code> para registrar participantes y apuestas. Consulta el README para instrucciones detalladas." if data.get("apuestas_abiertas") else "El plazo para apostar ha cerrado. Solo el administrador puede actualizar resultados."}
+            <strong>Las apuestas están {estado_apuestas.lower()}.</strong><br>
+            {"Ejecuta <code>python scripts/apostar.py</code> para registrar tu predicción de cada partido." if data.get("apuestas_abiertas") else "El plazo para apostar ha cerrado. Solo el admin puede actualizar resultados ahora."}
         </div>
     </section>
     <section>
-        <div class="section-title">Partidos</div>
+        <div class="section-title"><span class="dot" style="background:var(--verde)"></span>Partidos</div>
         {partidos_html}
     </section>
 </main>
-<footer>Generado con Python · {data['torneo']}</footer>
+<footer>Hecho con Python para el Mundial 2026 🌎</footer>
 </body>
 </html>"""
 
