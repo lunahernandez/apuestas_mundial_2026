@@ -4,21 +4,6 @@ from pathlib import Path
 DATA_FILE = Path(__file__).parent.parent / "data" / "partidos.json"
 OUT_FILE = Path(__file__).parent.parent / "docs" / "index.html"
 
-BANDERAS = {
-    "México": "🇲🇽", "Sudáfrica": "🇿🇦", "Corea del Sur": "🇰🇷", "Chequia": "🇨🇿",
-    "Canadá": "🇨🇦", "Bosnia-Herzegovina": "🇧🇦", "Qatar": "🇶🇦", "Suiza": "🇨🇭",
-    "Brasil": "🇧🇷", "Marruecos": "🇲🇦", "Haití": "🇭🇹", "Escocia": "🏴",
-    "Estados Unidos": "🇺🇸", "Paraguay": "🇵🇾", "Australia": "🇦🇺", "Turquía": "🇹🇷",
-    "Alemania": "🇩🇪", "Curazao": "🇨🇼", "Costa de Marfil": "🇨🇮", "Ecuador": "🇪🇨",
-    "Países Bajos": "🇳🇱", "Japón": "🇯🇵", "Suecia": "🇸🇪", "Túnez": "🇹🇳",
-    "España": "🇪🇸", "Cabo Verde": "🇨🇻", "Arabia Saudita": "🇸🇦", "Uruguay": "🇺🇾",
-    "Bélgica": "🇧🇪", "Egipto": "🇪🇬", "Irán": "🇮🇷", "Nueva Zelanda": "🇳🇿",
-    "Francia": "🇫🇷", "Senegal": "🇸🇳", "Irak": "🇮🇶", "Noruega": "🇳🇴",
-    "Argentina": "🇦🇷", "Argelia": "🇩🇿", "Austria": "🇦🇹", "Jordania": "🇯🇴",
-    "Portugal": "🇵🇹", "RD Congo": "🇨🇩", "Uzbekistán": "🇺🇿", "Colombia": "🇨🇴",
-    "Inglaterra": "🏴", "Croacia": "🇭🇷", "Ghana": "🇬🇭", "Panamá": "🇵🇦",
-    "Por definir": "❓"
-}
 
 PUNTOS_ACIERTO = 1
 PUNTOS_EMPATE_ACIERTO = 1
@@ -64,9 +49,6 @@ def calcular_puntuaciones(data):
 
     return sorted(puntuaciones.items(), key=lambda x: -x[1]["puntos"])
 
-
-def flag(equipo):
-    return BANDERAS.get(equipo, "🏳")
 
 
 def grupo_color(grupo):
@@ -167,13 +149,11 @@ def build_partidos_html(data):
             <div class="cromo" style="--c:{color}">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">{flag(local)}</span>
                         <span class="equipo-nombre">{local}</span>
                     </div>
                     <div class="marcador">{resultado_texto(partido)}</div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">{visitante}</span>
-                        <span class="bandera">{flag(visitante)}</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">{partido['fecha']}</div>
@@ -428,13 +408,6 @@ footer {{
     <section>
         <div class="section-title"><span class="dot"></span>Clasificación</div>
         {clasificacion_html}
-    </section>
-    <section>
-        <div class="section-title"><span class="dot" style="background:var(--azul)"></span>Cómo apostar</div>
-        <div class="info-box">
-            <strong>Las apuestas están {estado_apuestas.lower()}.</strong><br>
-            {"Ejecuta <code>python scripts/apostar.py</code> para registrar tu predicción de cada partido." if data.get("apuestas_abiertas") else "El plazo para apostar ha cerrado. Solo el admin puede actualizar resultados ahora."}
-        </div>
     </section>
     <section>
         <div class="section-title"><span class="dot" style="background:var(--verde)"></span>Partidos</div>
