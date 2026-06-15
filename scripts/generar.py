@@ -4,7 +4,6 @@ from pathlib import Path
 DATA_FILE = Path(__file__).parent.parent / "data" / "partidos.json"
 OUT_FILE = Path(__file__).parent.parent / "docs" / "index.html"
 
-
 PUNTOS_ACIERTO = 1
 PUNTOS_EMPATE_ACIERTO = 1
 
@@ -48,7 +47,6 @@ def calcular_puntuaciones(data):
                 puntuaciones[nombre]["aciertos"] += 1
 
     return sorted(puntuaciones.items(), key=lambda x: -x[1]["puntos"])
-
 
 
 def grupo_color(grupo):
@@ -342,7 +340,6 @@ section {{ margin-bottom: 44px; }}
 }}
 .equipo {{ display: flex; align-items: center; gap: 8px; min-width: 0; }}
 .equipo-derecha {{ justify-content: flex-end; text-align: right; }}
-.bandera {{ font-size: 1.6rem; flex-shrink: 0; }}
 .equipo-nombre {{ font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: 0.95rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }}
 .marcador {{ text-align: center; min-width: 60px; }}
 .resultado {{ font-family: 'Fredoka', sans-serif; font-weight: 700; font-size: 1.3rem; color: var(--marino); }}
@@ -394,13 +391,12 @@ footer {{
 }}
 @media (max-width: 480px) {{
     .equipo-nombre {{ font-size: 0.82rem; }}
-    .bandera {{ font-size: 1.3rem; }}
 }}
 </style>
 </head>
 <body>
 <header>
-    <div class="header-title">⚽ {data['torneo']} <span class="accent">· Quiniela</span></div>
+    <div class="header-title"><span class="accent">Mundial 2026</span> Apuestas</div>
     <div class="header-sub">{total_partidos} partidos · ¿quién sabe más de fútbol?</div>
     <span class="badge {badge_cls}">Apuestas {estado_apuestas}</span>
 </header>

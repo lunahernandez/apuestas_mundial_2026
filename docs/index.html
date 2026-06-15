@@ -167,7 +167,6 @@ section { margin-bottom: 44px; }
 }
 .equipo { display: flex; align-items: center; gap: 8px; min-width: 0; }
 .equipo-derecha { justify-content: flex-end; text-align: right; }
-.bandera { font-size: 1.6rem; flex-shrink: 0; }
 .equipo-nombre { font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: 0.95rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .marcador { text-align: center; min-width: 60px; }
 .resultado { font-family: 'Fredoka', sans-serif; font-weight: 700; font-size: 1.3rem; color: var(--marino); }
@@ -219,13 +218,12 @@ footer {
 }
 @media (max-width: 480px) {
     .equipo-nombre { font-size: 0.82rem; }
-    .bandera { font-size: 1.3rem; }
 }
 </style>
 </head>
 <body>
 <header>
-    <div class="header-title">⚽ Mundial 2026 <span class="accent">· Quiniela</span></div>
+    <div class="header-title"><span class="accent">Mundial 2026</span> Apuestas</div>
     <div class="header-sub">102 partidos · ¿quién sabe más de fútbol?</div>
     <span class="badge badge-open">Apuestas ABIERTAS</span>
 </header>
@@ -261,25 +259,16 @@ footer {
         </div></div>
     </section>
     <section>
-        <div class="section-title"><span class="dot" style="background:var(--azul)"></span>Cómo apostar</div>
-        <div class="info-box">
-            <strong>Las apuestas están abiertas.</strong><br>
-            Ejecuta <code>python scripts/apostar.py</code> para registrar tu predicción de cada partido.
-        </div>
-    </section>
-    <section>
         <div class="section-title"><span class="dot" style="background:var(--verde)"></span>Partidos</div>
         <div class="fase-label" style="--c:#FF5C4D"><span>Grupos · Grupo A</span></div>
             <div class="cromo" style="--c:#FF5C4D">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇲🇽</span>
                         <span class="equipo-nombre">México</span>
                     </div>
                     <div class="marcador"><span class="resultado">2 – 0</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Sudáfrica</span>
-                        <span class="bandera">🇿🇦</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-11</div>
@@ -298,13 +287,11 @@ footer {
             <div class="cromo" style="--c:#FF5C4D">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇰🇷</span>
                         <span class="equipo-nombre">Corea del Sur</span>
                     </div>
                     <div class="marcador"><span class="resultado">2 – 1</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Chequia</span>
-                        <span class="bandera">🇨🇿</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-11</div>
@@ -323,13 +310,11 @@ footer {
             <div class="cromo" style="--c:#FF5C4D">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇨🇿</span>
                         <span class="equipo-nombre">Chequia</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Sudáfrica</span>
-                        <span class="bandera">🇿🇦</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-18</div>
@@ -348,13 +333,11 @@ footer {
             <div class="cromo" style="--c:#FF5C4D">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇲🇽</span>
                         <span class="equipo-nombre">México</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Corea del Sur</span>
-                        <span class="bandera">🇰🇷</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-18</div>
@@ -373,13 +356,11 @@ footer {
             <div class="cromo" style="--c:#FF5C4D">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇨🇿</span>
                         <span class="equipo-nombre">Chequia</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">México</span>
-                        <span class="bandera">🇲🇽</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-24</div>
@@ -398,13 +379,11 @@ footer {
             <div class="cromo" style="--c:#FF5C4D">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇿🇦</span>
                         <span class="equipo-nombre">Sudáfrica</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Corea del Sur</span>
-                        <span class="bandera">🇰🇷</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-24</div>
@@ -423,13 +402,11 @@ footer {
             <div class="cromo" style="--c:#FFB627">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇨🇦</span>
                         <span class="equipo-nombre">Canadá</span>
                     </div>
                     <div class="marcador"><span class="resultado">1 – 1</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Bosnia-Herzegovina</span>
-                        <span class="bandera">🇧🇦</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-12</div>
@@ -448,13 +425,11 @@ footer {
             <div class="cromo" style="--c:#FFB627">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇶🇦</span>
                         <span class="equipo-nombre">Qatar</span>
                     </div>
                     <div class="marcador"><span class="resultado">1 – 1</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Suiza</span>
-                        <span class="bandera">🇨🇭</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-13</div>
@@ -473,13 +448,11 @@ footer {
             <div class="cromo" style="--c:#FFB627">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇨🇭</span>
                         <span class="equipo-nombre">Suiza</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Bosnia-Herzegovina</span>
-                        <span class="bandera">🇧🇦</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-18</div>
@@ -498,13 +471,11 @@ footer {
             <div class="cromo" style="--c:#FFB627">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇨🇦</span>
                         <span class="equipo-nombre">Canadá</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Qatar</span>
-                        <span class="bandera">🇶🇦</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-18</div>
@@ -523,13 +494,11 @@ footer {
             <div class="cromo" style="--c:#FFB627">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇨🇭</span>
                         <span class="equipo-nombre">Suiza</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Canadá</span>
-                        <span class="bandera">🇨🇦</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-24</div>
@@ -548,13 +517,11 @@ footer {
             <div class="cromo" style="--c:#FFB627">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇧🇦</span>
                         <span class="equipo-nombre">Bosnia-Herzegovina</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Qatar</span>
-                        <span class="bandera">🇶🇦</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-24</div>
@@ -573,13 +540,11 @@ footer {
             <div class="cromo" style="--c:#2EC4F1">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇺🇸</span>
                         <span class="equipo-nombre">Estados Unidos</span>
                     </div>
                     <div class="marcador"><span class="resultado">4 – 1</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Paraguay</span>
-                        <span class="bandera">🇵🇾</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-12</div>
@@ -598,13 +563,11 @@ footer {
             <div class="cromo" style="--c:#2EC4F1">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇦🇺</span>
                         <span class="equipo-nombre">Australia</span>
                     </div>
                     <div class="marcador"><span class="resultado">2 – 0</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Turquía</span>
-                        <span class="bandera">🇹🇷</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-13</div>
@@ -623,13 +586,11 @@ footer {
             <div class="cromo" style="--c:#2EC4F1">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇺🇸</span>
                         <span class="equipo-nombre">Estados Unidos</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Australia</span>
-                        <span class="bandera">🇦🇺</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-19</div>
@@ -648,13 +609,11 @@ footer {
             <div class="cromo" style="--c:#2EC4F1">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇹🇷</span>
                         <span class="equipo-nombre">Turquía</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Paraguay</span>
-                        <span class="bandera">🇵🇾</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-19</div>
@@ -673,13 +632,11 @@ footer {
             <div class="cromo" style="--c:#2EC4F1">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇹🇷</span>
                         <span class="equipo-nombre">Turquía</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Estados Unidos</span>
-                        <span class="bandera">🇺🇸</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-25</div>
@@ -698,13 +655,11 @@ footer {
             <div class="cromo" style="--c:#2EC4F1">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇵🇾</span>
                         <span class="equipo-nombre">Paraguay</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Australia</span>
-                        <span class="bandera">🇦🇺</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-25</div>
@@ -723,13 +678,11 @@ footer {
             <div class="cromo" style="--c:#1FAA59">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇧🇷</span>
                         <span class="equipo-nombre">Brasil</span>
                     </div>
                     <div class="marcador"><span class="resultado">1 – 1</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Marruecos</span>
-                        <span class="bandera">🇲🇦</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-13</div>
@@ -748,13 +701,11 @@ footer {
             <div class="cromo" style="--c:#1FAA59">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇭🇹</span>
                         <span class="equipo-nombre">Haití</span>
                     </div>
                     <div class="marcador"><span class="resultado">0 – 1</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Escocia</span>
-                        <span class="bandera">🏴</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-13</div>
@@ -773,13 +724,11 @@ footer {
             <div class="cromo" style="--c:#1FAA59">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🏴</span>
                         <span class="equipo-nombre">Escocia</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Marruecos</span>
-                        <span class="bandera">🇲🇦</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-19</div>
@@ -798,13 +747,11 @@ footer {
             <div class="cromo" style="--c:#1FAA59">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇧🇷</span>
                         <span class="equipo-nombre">Brasil</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Haití</span>
-                        <span class="bandera">🇭🇹</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-19</div>
@@ -823,13 +770,11 @@ footer {
             <div class="cromo" style="--c:#1FAA59">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🏴</span>
                         <span class="equipo-nombre">Escocia</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Brasil</span>
-                        <span class="bandera">🇧🇷</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-24</div>
@@ -848,13 +793,11 @@ footer {
             <div class="cromo" style="--c:#1FAA59">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇲🇦</span>
                         <span class="equipo-nombre">Marruecos</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Haití</span>
-                        <span class="bandera">🇭🇹</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-24</div>
@@ -873,13 +816,11 @@ footer {
             <div class="cromo" style="--c:#9B5DE5">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇩🇪</span>
                         <span class="equipo-nombre">Alemania</span>
                     </div>
                     <div class="marcador"><span class="resultado">7 – 1</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Curazao</span>
-                        <span class="bandera">🇨🇼</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-14</div>
@@ -898,13 +839,11 @@ footer {
             <div class="cromo" style="--c:#9B5DE5">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇨🇮</span>
                         <span class="equipo-nombre">Costa de Marfil</span>
                     </div>
                     <div class="marcador"><span class="resultado">1 – 0</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Ecuador</span>
-                        <span class="bandera">🇪🇨</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-14</div>
@@ -923,13 +862,11 @@ footer {
             <div class="cromo" style="--c:#9B5DE5">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇩🇪</span>
                         <span class="equipo-nombre">Alemania</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Costa de Marfil</span>
-                        <span class="bandera">🇨🇮</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-20</div>
@@ -948,13 +885,11 @@ footer {
             <div class="cromo" style="--c:#9B5DE5">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇪🇨</span>
                         <span class="equipo-nombre">Ecuador</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Curazao</span>
-                        <span class="bandera">🇨🇼</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-20</div>
@@ -973,13 +908,11 @@ footer {
             <div class="cromo" style="--c:#9B5DE5">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇨🇼</span>
                         <span class="equipo-nombre">Curazao</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Costa de Marfil</span>
-                        <span class="bandera">🇨🇮</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-25</div>
@@ -998,13 +931,11 @@ footer {
             <div class="cromo" style="--c:#9B5DE5">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇪🇨</span>
                         <span class="equipo-nombre">Ecuador</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Alemania</span>
-                        <span class="bandera">🇩🇪</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-25</div>
@@ -1023,13 +954,11 @@ footer {
             <div class="cromo" style="--c:#FF6FB5">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇳🇱</span>
                         <span class="equipo-nombre">Países Bajos</span>
                     </div>
                     <div class="marcador"><span class="resultado">2 – 2</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Japón</span>
-                        <span class="bandera">🇯🇵</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-14</div>
@@ -1048,13 +977,11 @@ footer {
             <div class="cromo" style="--c:#FF6FB5">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇸🇪</span>
                         <span class="equipo-nombre">Suecia</span>
                     </div>
                     <div class="marcador"><span class="resultado">5 – 1</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Túnez</span>
-                        <span class="bandera">🇹🇳</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-14</div>
@@ -1073,13 +1000,11 @@ footer {
             <div class="cromo" style="--c:#FF6FB5">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇳🇱</span>
                         <span class="equipo-nombre">Países Bajos</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Suecia</span>
-                        <span class="bandera">🇸🇪</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-20</div>
@@ -1098,13 +1023,11 @@ footer {
             <div class="cromo" style="--c:#FF6FB5">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇹🇳</span>
                         <span class="equipo-nombre">Túnez</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Japón</span>
-                        <span class="bandera">🇯🇵</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-20</div>
@@ -1123,13 +1046,11 @@ footer {
             <div class="cromo" style="--c:#FF6FB5">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇯🇵</span>
                         <span class="equipo-nombre">Japón</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Suecia</span>
-                        <span class="bandera">🇸🇪</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-25</div>
@@ -1148,13 +1069,11 @@ footer {
             <div class="cromo" style="--c:#FF6FB5">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇹🇳</span>
                         <span class="equipo-nombre">Túnez</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Países Bajos</span>
-                        <span class="bandera">🇳🇱</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-25</div>
@@ -1173,13 +1092,11 @@ footer {
             <div class="cromo" style="--c:#F8C630">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇪🇸</span>
                         <span class="equipo-nombre">España</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Cabo Verde</span>
-                        <span class="bandera">🇨🇻</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-15</div>
@@ -1198,13 +1115,11 @@ footer {
             <div class="cromo" style="--c:#F8C630">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇸🇦</span>
                         <span class="equipo-nombre">Arabia Saudita</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Uruguay</span>
-                        <span class="bandera">🇺🇾</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-15</div>
@@ -1223,13 +1138,11 @@ footer {
             <div class="cromo" style="--c:#F8C630">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇪🇸</span>
                         <span class="equipo-nombre">España</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Arabia Saudita</span>
-                        <span class="bandera">🇸🇦</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-21</div>
@@ -1248,13 +1161,11 @@ footer {
             <div class="cromo" style="--c:#F8C630">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇺🇾</span>
                         <span class="equipo-nombre">Uruguay</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Cabo Verde</span>
-                        <span class="bandera">🇨🇻</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-21</div>
@@ -1273,13 +1184,11 @@ footer {
             <div class="cromo" style="--c:#F8C630">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇨🇻</span>
                         <span class="equipo-nombre">Cabo Verde</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Arabia Saudita</span>
-                        <span class="bandera">🇸🇦</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-26</div>
@@ -1298,13 +1207,11 @@ footer {
             <div class="cromo" style="--c:#F8C630">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇺🇾</span>
                         <span class="equipo-nombre">Uruguay</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">España</span>
-                        <span class="bandera">🇪🇸</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-26</div>
@@ -1323,13 +1230,11 @@ footer {
             <div class="cromo" style="--c:#00B8A9">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇧🇪</span>
                         <span class="equipo-nombre">Bélgica</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Egipto</span>
-                        <span class="bandera">🇪🇬</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-15</div>
@@ -1348,13 +1253,11 @@ footer {
             <div class="cromo" style="--c:#00B8A9">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇮🇷</span>
                         <span class="equipo-nombre">Irán</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Nueva Zelanda</span>
-                        <span class="bandera">🇳🇿</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-15</div>
@@ -1373,13 +1276,11 @@ footer {
             <div class="cromo" style="--c:#00B8A9">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇧🇪</span>
                         <span class="equipo-nombre">Bélgica</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Irán</span>
-                        <span class="bandera">🇮🇷</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-21</div>
@@ -1398,13 +1299,11 @@ footer {
             <div class="cromo" style="--c:#00B8A9">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇳🇿</span>
                         <span class="equipo-nombre">Nueva Zelanda</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Egipto</span>
-                        <span class="bandera">🇪🇬</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-21</div>
@@ -1423,13 +1322,11 @@ footer {
             <div class="cromo" style="--c:#00B8A9">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇪🇬</span>
                         <span class="equipo-nombre">Egipto</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Irán</span>
-                        <span class="bandera">🇮🇷</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-26</div>
@@ -1448,13 +1345,11 @@ footer {
             <div class="cromo" style="--c:#00B8A9">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇳🇿</span>
                         <span class="equipo-nombre">Nueva Zelanda</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Bélgica</span>
-                        <span class="bandera">🇧🇪</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-26</div>
@@ -1473,13 +1368,11 @@ footer {
             <div class="cromo" style="--c:#4361EE">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇫🇷</span>
                         <span class="equipo-nombre">Francia</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Senegal</span>
-                        <span class="bandera">🇸🇳</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-16</div>
@@ -1498,13 +1391,11 @@ footer {
             <div class="cromo" style="--c:#4361EE">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇮🇶</span>
                         <span class="equipo-nombre">Irak</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Noruega</span>
-                        <span class="bandera">🇳🇴</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-16</div>
@@ -1523,13 +1414,11 @@ footer {
             <div class="cromo" style="--c:#4361EE">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇫🇷</span>
                         <span class="equipo-nombre">Francia</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Irak</span>
-                        <span class="bandera">🇮🇶</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-22</div>
@@ -1548,13 +1437,11 @@ footer {
             <div class="cromo" style="--c:#4361EE">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇳🇴</span>
                         <span class="equipo-nombre">Noruega</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Senegal</span>
-                        <span class="bandera">🇸🇳</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-22</div>
@@ -1573,13 +1460,11 @@ footer {
             <div class="cromo" style="--c:#4361EE">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇳🇴</span>
                         <span class="equipo-nombre">Noruega</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Francia</span>
-                        <span class="bandera">🇫🇷</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-26</div>
@@ -1598,13 +1483,11 @@ footer {
             <div class="cromo" style="--c:#4361EE">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇸🇳</span>
                         <span class="equipo-nombre">Senegal</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Irak</span>
-                        <span class="bandera">🇮🇶</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-26</div>
@@ -1623,13 +1506,11 @@ footer {
             <div class="cromo" style="--c:#F25C54">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇦🇷</span>
                         <span class="equipo-nombre">Argentina</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Argelia</span>
-                        <span class="bandera">🇩🇿</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-16</div>
@@ -1648,13 +1529,11 @@ footer {
             <div class="cromo" style="--c:#F25C54">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇦🇹</span>
                         <span class="equipo-nombre">Austria</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Jordania</span>
-                        <span class="bandera">🇯🇴</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-16</div>
@@ -1673,13 +1552,11 @@ footer {
             <div class="cromo" style="--c:#F25C54">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇦🇷</span>
                         <span class="equipo-nombre">Argentina</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Austria</span>
-                        <span class="bandera">🇦🇹</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-22</div>
@@ -1698,13 +1575,11 @@ footer {
             <div class="cromo" style="--c:#F25C54">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇯🇴</span>
                         <span class="equipo-nombre">Jordania</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Argelia</span>
-                        <span class="bandera">🇩🇿</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-22</div>
@@ -1723,13 +1598,11 @@ footer {
             <div class="cromo" style="--c:#F25C54">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇩🇿</span>
                         <span class="equipo-nombre">Argelia</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Austria</span>
-                        <span class="bandera">🇦🇹</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-27</div>
@@ -1748,13 +1621,11 @@ footer {
             <div class="cromo" style="--c:#F25C54">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇯🇴</span>
                         <span class="equipo-nombre">Jordania</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Argentina</span>
-                        <span class="bandera">🇦🇷</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-27</div>
@@ -1773,13 +1644,11 @@ footer {
             <div class="cromo" style="--c:#5FBB63">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇵🇹</span>
                         <span class="equipo-nombre">Portugal</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">RD Congo</span>
-                        <span class="bandera">🇨🇩</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-17</div>
@@ -1798,13 +1667,11 @@ footer {
             <div class="cromo" style="--c:#5FBB63">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇺🇿</span>
                         <span class="equipo-nombre">Uzbekistán</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Colombia</span>
-                        <span class="bandera">🇨🇴</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-17</div>
@@ -1823,13 +1690,11 @@ footer {
             <div class="cromo" style="--c:#5FBB63">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇵🇹</span>
                         <span class="equipo-nombre">Portugal</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Uzbekistán</span>
-                        <span class="bandera">🇺🇿</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-23</div>
@@ -1848,13 +1713,11 @@ footer {
             <div class="cromo" style="--c:#5FBB63">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇨🇴</span>
                         <span class="equipo-nombre">Colombia</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">RD Congo</span>
-                        <span class="bandera">🇨🇩</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-23</div>
@@ -1873,13 +1736,11 @@ footer {
             <div class="cromo" style="--c:#5FBB63">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇨🇴</span>
                         <span class="equipo-nombre">Colombia</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Portugal</span>
-                        <span class="bandera">🇵🇹</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-27</div>
@@ -1898,13 +1759,11 @@ footer {
             <div class="cromo" style="--c:#5FBB63">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇨🇩</span>
                         <span class="equipo-nombre">RD Congo</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Uzbekistán</span>
-                        <span class="bandera">🇺🇿</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-27</div>
@@ -1923,13 +1782,11 @@ footer {
             <div class="cromo" style="--c:#FF9F1C">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🏴</span>
                         <span class="equipo-nombre">Inglaterra</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Croacia</span>
-                        <span class="bandera">🇭🇷</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-17</div>
@@ -1948,13 +1805,11 @@ footer {
             <div class="cromo" style="--c:#FF9F1C">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇬🇭</span>
                         <span class="equipo-nombre">Ghana</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Panamá</span>
-                        <span class="bandera">🇵🇦</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-17</div>
@@ -1973,13 +1828,11 @@ footer {
             <div class="cromo" style="--c:#FF9F1C">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🏴</span>
                         <span class="equipo-nombre">Inglaterra</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Ghana</span>
-                        <span class="bandera">🇬🇭</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-23</div>
@@ -1998,13 +1851,11 @@ footer {
             <div class="cromo" style="--c:#FF9F1C">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇵🇦</span>
                         <span class="equipo-nombre">Panamá</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Croacia</span>
-                        <span class="bandera">🇭🇷</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-23</div>
@@ -2023,13 +1874,11 @@ footer {
             <div class="cromo" style="--c:#FF9F1C">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇵🇦</span>
                         <span class="equipo-nombre">Panamá</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Inglaterra</span>
-                        <span class="bandera">🏴</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-27</div>
@@ -2048,13 +1897,11 @@ footer {
             <div class="cromo" style="--c:#FF9F1C">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">🇭🇷</span>
                         <span class="equipo-nombre">Croacia</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Ghana</span>
-                        <span class="bandera">🇬🇭</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-27</div>
@@ -2073,13 +1920,11 @@ footer {
             <div class="cromo" style="--c:#16213E">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">❓</span>
                         <span class="equipo-nombre">Por definir</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Por definir</span>
-                        <span class="bandera">❓</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-28</div>
@@ -2098,13 +1943,11 @@ footer {
             <div class="cromo" style="--c:#16213E">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">❓</span>
                         <span class="equipo-nombre">Por definir</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Por definir</span>
-                        <span class="bandera">❓</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-28</div>
@@ -2123,13 +1966,11 @@ footer {
             <div class="cromo" style="--c:#16213E">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">❓</span>
                         <span class="equipo-nombre">Por definir</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Por definir</span>
-                        <span class="bandera">❓</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-29</div>
@@ -2148,13 +1989,11 @@ footer {
             <div class="cromo" style="--c:#16213E">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">❓</span>
                         <span class="equipo-nombre">Por definir</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Por definir</span>
-                        <span class="bandera">❓</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-29</div>
@@ -2173,13 +2012,11 @@ footer {
             <div class="cromo" style="--c:#16213E">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">❓</span>
                         <span class="equipo-nombre">Por definir</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Por definir</span>
-                        <span class="bandera">❓</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-30</div>
@@ -2198,13 +2035,11 @@ footer {
             <div class="cromo" style="--c:#16213E">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">❓</span>
                         <span class="equipo-nombre">Por definir</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Por definir</span>
-                        <span class="bandera">❓</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-06-30</div>
@@ -2223,13 +2058,11 @@ footer {
             <div class="cromo" style="--c:#16213E">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">❓</span>
                         <span class="equipo-nombre">Por definir</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Por definir</span>
-                        <span class="bandera">❓</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-07-01</div>
@@ -2248,13 +2081,11 @@ footer {
             <div class="cromo" style="--c:#16213E">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">❓</span>
                         <span class="equipo-nombre">Por definir</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Por definir</span>
-                        <span class="bandera">❓</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-07-01</div>
@@ -2273,13 +2104,11 @@ footer {
             <div class="cromo" style="--c:#16213E">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">❓</span>
                         <span class="equipo-nombre">Por definir</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Por definir</span>
-                        <span class="bandera">❓</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-07-02</div>
@@ -2298,13 +2127,11 @@ footer {
             <div class="cromo" style="--c:#16213E">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">❓</span>
                         <span class="equipo-nombre">Por definir</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Por definir</span>
-                        <span class="bandera">❓</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-07-02</div>
@@ -2323,13 +2150,11 @@ footer {
             <div class="cromo" style="--c:#16213E">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">❓</span>
                         <span class="equipo-nombre">Por definir</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Por definir</span>
-                        <span class="bandera">❓</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-07-03</div>
@@ -2348,13 +2173,11 @@ footer {
             <div class="cromo" style="--c:#16213E">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">❓</span>
                         <span class="equipo-nombre">Por definir</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Por definir</span>
-                        <span class="bandera">❓</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-07-03</div>
@@ -2373,13 +2196,11 @@ footer {
             <div class="cromo" style="--c:#16213E">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">❓</span>
                         <span class="equipo-nombre">Por definir</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Por definir</span>
-                        <span class="bandera">❓</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-07-04</div>
@@ -2398,13 +2219,11 @@ footer {
             <div class="cromo" style="--c:#16213E">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">❓</span>
                         <span class="equipo-nombre">Por definir</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Por definir</span>
-                        <span class="bandera">❓</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-07-04</div>
@@ -2423,13 +2242,11 @@ footer {
             <div class="cromo" style="--c:#16213E">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">❓</span>
                         <span class="equipo-nombre">Por definir</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Por definir</span>
-                        <span class="bandera">❓</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-07-05</div>
@@ -2448,13 +2265,11 @@ footer {
             <div class="cromo" style="--c:#16213E">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">❓</span>
                         <span class="equipo-nombre">Por definir</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Por definir</span>
-                        <span class="bandera">❓</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-07-05</div>
@@ -2473,13 +2288,11 @@ footer {
             <div class="cromo" style="--c:#16213E">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">❓</span>
                         <span class="equipo-nombre">Por definir</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Por definir</span>
-                        <span class="bandera">❓</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-07-06</div>
@@ -2498,13 +2311,11 @@ footer {
             <div class="cromo" style="--c:#16213E">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">❓</span>
                         <span class="equipo-nombre">Por definir</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Por definir</span>
-                        <span class="bandera">❓</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-07-06</div>
@@ -2523,13 +2334,11 @@ footer {
             <div class="cromo" style="--c:#16213E">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">❓</span>
                         <span class="equipo-nombre">Por definir</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Por definir</span>
-                        <span class="bandera">❓</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-07-07</div>
@@ -2548,13 +2357,11 @@ footer {
             <div class="cromo" style="--c:#16213E">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">❓</span>
                         <span class="equipo-nombre">Por definir</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Por definir</span>
-                        <span class="bandera">❓</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-07-07</div>
@@ -2573,13 +2380,11 @@ footer {
             <div class="cromo" style="--c:#16213E">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">❓</span>
                         <span class="equipo-nombre">Por definir</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Por definir</span>
-                        <span class="bandera">❓</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-07-09</div>
@@ -2598,13 +2403,11 @@ footer {
             <div class="cromo" style="--c:#16213E">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">❓</span>
                         <span class="equipo-nombre">Por definir</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Por definir</span>
-                        <span class="bandera">❓</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-07-09</div>
@@ -2623,13 +2426,11 @@ footer {
             <div class="cromo" style="--c:#16213E">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">❓</span>
                         <span class="equipo-nombre">Por definir</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Por definir</span>
-                        <span class="bandera">❓</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-07-10</div>
@@ -2648,13 +2449,11 @@ footer {
             <div class="cromo" style="--c:#16213E">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">❓</span>
                         <span class="equipo-nombre">Por definir</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Por definir</span>
-                        <span class="bandera">❓</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-07-10</div>
@@ -2673,13 +2472,11 @@ footer {
             <div class="cromo" style="--c:#16213E">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">❓</span>
                         <span class="equipo-nombre">Por definir</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Por definir</span>
-                        <span class="bandera">❓</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-07-11</div>
@@ -2698,13 +2495,11 @@ footer {
             <div class="cromo" style="--c:#16213E">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">❓</span>
                         <span class="equipo-nombre">Por definir</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Por definir</span>
-                        <span class="bandera">❓</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-07-11</div>
@@ -2723,13 +2518,11 @@ footer {
             <div class="cromo" style="--c:#16213E">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">❓</span>
                         <span class="equipo-nombre">Por definir</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Por definir</span>
-                        <span class="bandera">❓</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-07-14</div>
@@ -2748,13 +2541,11 @@ footer {
             <div class="cromo" style="--c:#16213E">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">❓</span>
                         <span class="equipo-nombre">Por definir</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Por definir</span>
-                        <span class="bandera">❓</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-07-15</div>
@@ -2773,13 +2564,11 @@ footer {
             <div class="cromo" style="--c:#16213E">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">❓</span>
                         <span class="equipo-nombre">Por definir</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Por definir</span>
-                        <span class="bandera">❓</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-07-18</div>
@@ -2798,13 +2587,11 @@ footer {
             <div class="cromo" style="--c:#16213E">
                 <div class="cromo-top">
                     <div class="equipo">
-                        <span class="bandera">❓</span>
                         <span class="equipo-nombre">Por definir</span>
                     </div>
                     <div class="marcador"><span class="sin-resultado">vs</span></div>
                     <div class="equipo equipo-derecha">
                         <span class="equipo-nombre">Por definir</span>
-                        <span class="bandera">❓</span>
                     </div>
                 </div>
                 <div class="cromo-fecha">2026-07-19</div>
