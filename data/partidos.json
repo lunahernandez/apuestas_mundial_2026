@@ -7,48 +7,20 @@
       "nombre": "Luna",
       "apuestas": [
         {
-          "partido_id": 2,
+          "partido_id": 13,
           "ganador": "local"
         },
         {
-          "partido_id": 3,
+          "partido_id": 14,
           "ganador": "local"
         },
         {
-          "partido_id": 4,
+          "partido_id": 15,
           "ganador": "visitante"
         },
         {
-          "partido_id": 5,
+          "partido_id": 16,
           "ganador": "visitante"
-        },
-        {
-          "partido_id": 6,
-          "ganador": "local"
-        },
-        {
-          "partido_id": 7,
-          "ganador": "visitante"
-        },
-        {
-          "partido_id": 8,
-          "ganador": "visitante"
-        },
-        {
-          "partido_id": 9,
-          "ganador": "local"
-        },
-        {
-          "partido_id": 10,
-          "ganador": "empate"
-        },
-        {
-          "partido_id": 11,
-          "ganador": "empate"
-        },
-        {
-          "partido_id": 12,
-          "ganador": "local"
         }
       ]
     },
@@ -56,48 +28,20 @@
       "nombre": "Dani",
       "apuestas": [
         {
-          "partido_id": 2,
-          "ganador": "empate"
-        },
-        {
-          "partido_id": 3,
-          "ganador": "visitante"
-        },
-        {
-          "partido_id": 4,
-          "ganador": "empate"
-        },
-        {
-          "partido_id": 5,
-          "ganador": "visitante"
-        },
-        {
-          "partido_id": 6,
+          "partido_id": 13,
           "ganador": "local"
         },
         {
-          "partido_id": 7,
-          "ganador": "visitante"
-        },
-        {
-          "partido_id": 8,
-          "ganador": "visitante"
-        },
-        {
-          "partido_id": 9,
+          "partido_id": 14,
           "ganador": "local"
         },
         {
-          "partido_id": 10,
-          "ganador": "local"
-        },
-        {
-          "partido_id": 11,
-          "ganador": "visitante"
-        },
-        {
-          "partido_id": 12,
+          "partido_id": 15,
           "ganador": "empate"
+        },
+        {
+          "partido_id": 16,
+          "ganador": "local"
         }
       ]
     }
@@ -190,8 +134,8 @@
       "local": "Alemania",
       "visitante": "Curazao",
       "fecha": "2026-06-14",
-      "resultado_local": null,
-      "resultado_visitante": null
+      "resultado_local": 7,
+      "resultado_visitante": 1
     },
     {
       "id": 10,
@@ -200,8 +144,8 @@
       "local": "Países Bajos",
       "visitante": "Japón",
       "fecha": "2026-06-14",
-      "resultado_local": null,
-      "resultado_visitante": null
+      "resultado_local": 2,
+      "resultado_visitante": 2
     },
     {
       "id": 11,
@@ -210,8 +154,8 @@
       "local": "Costa de Marfil",
       "visitante": "Ecuador",
       "fecha": "2026-06-14",
-      "resultado_local": null,
-      "resultado_visitante": null
+      "resultado_local": 1,
+      "resultado_visitante": 0
     },
     {
       "id": 12,
@@ -220,8 +164,8 @@
       "local": "Suecia",
       "visitante": "Túnez",
       "fecha": "2026-06-14",
-      "resultado_local": null,
-      "resultado_visitante": null
+      "resultado_local": 5,
+      "resultado_visitante": 1
     },
     {
       "id": 13,
