@@ -262,8 +262,8 @@
       "local": "España",
       "visitante": "Cabo Verde",
       "fecha": "2026-06-15",
-      "resultado_local": null,
-      "resultado_visitante": null
+      "resultado_local": 0,
+      "resultado_visitante": 0
     },
     {
       "id": 14,
@@ -272,8 +272,8 @@
       "local": "Bélgica",
       "visitante": "Egipto",
       "fecha": "2026-06-15",
-      "resultado_local": null,
-      "resultado_visitante": null
+      "resultado_local": 1,
+      "resultado_visitante": 1
     },
     {
       "id": 15,
@@ -282,8 +282,8 @@
       "local": "Arabia Saudita",
       "visitante": "Uruguay",
       "fecha": "2026-06-15",
-      "resultado_local": null,
-      "resultado_visitante": null
+      "resultado_local": 1,
+      "resultado_visitante": 1
     },
     {
       "id": 16,
@@ -292,8 +292,8 @@
       "local": "Irán",
       "visitante": "Nueva Zelanda",
       "fecha": "2026-06-15",
-      "resultado_local": null,
-      "resultado_visitante": null
+      "resultado_local": 2,
+      "resultado_visitante": 2
     },
     {
       "id": 17,
