@@ -335,14 +335,14 @@ footer { text-align: center; padding: 28px; font-size: 0.76rem; color: var(--gri
     margin: 0 0 14px;
 }
 .cuadro-board {
-    min-width: 1150px;
+    min-width: 1180px;
     display: grid;
-    grid-template-columns: repeat(5, minmax(190px, 1fr));
-    grid-template-rows: repeat(32, 27px);
-    column-gap: 28px;
-    row-gap: 4px;
+    grid-template-columns: repeat(5, minmax(205px, 1fr));
+    grid-template-rows: repeat(32, 36px);
+    column-gap: 26px;
+    row-gap: 8px;
     position: relative;
-    padding: 8px 0 16px;
+    padding: 10px 0 18px;
 }
 .cuadro-col-titulo {
     font-family: 'Fredoka', sans-serif;
@@ -358,9 +358,13 @@ footer { text-align: center; padding: 28px; font-size: 0.76rem; color: var(--gri
     background: #fff;
     border: 2px solid var(--round);
     border-radius: 10px;
-    padding: 7px 8px;
+    padding: 8px 10px;
     box-shadow: 0 2px 0 rgba(22,33,62,0.04);
-    min-height: 54px;
+    height: 100%;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     z-index: 1;
 }
 .cuadro-partido[data-avanza="true"]::after {
@@ -380,17 +384,17 @@ footer { text-align: center; padding: 28px; font-size: 0.76rem; color: var(--gri
     justify-content: space-between;
     gap: 8px;
     color: var(--gris);
-    font-size: 0.64rem;
-    margin-bottom: 4px;
+    font-size: 0.66rem;
+    margin-bottom: 6px;
 }
 .cuadro-equipo {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
     gap: 6px;
     align-items: center;
-    font-size: 0.75rem;
-    line-height: 1.15;
-    padding: 2px 0;
+    font-size: 0.78rem;
+    line-height: 1.2;
+    padding: 3px 0;
 }
 .cuadro-equipo span:first-child {
     overflow: hidden;
@@ -407,7 +411,7 @@ footer { text-align: center; padding: 28px; font-size: 0.76rem; color: var(--gri
 .cuadro-equipo.pendiente { color: var(--gris); font-style: italic; }
 .cuadro-score {
     font-family: 'Fredoka', sans-serif;
-    font-size: 0.82rem;
+    font-size: 0.84rem;
     min-width: 14px;
     text-align: right;
 }
