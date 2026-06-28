@@ -320,22 +320,164 @@ footer { text-align: center; padding: 28px; font-size: 0.76rem; color: var(--gri
     .equipo-nombre { font-size: 0.82rem; }
     .opt { padding: 4px 7px; font-size: 0.7rem; }
 }
+
+/* Cuadro eliminatorio */
+.cuadro-wrap {
+    background: #fff;
+    border: 2px solid var(--marino-10);
+    border-radius: 18px;
+    padding: 18px;
+    overflow-x: auto;
+}
+.cuadro-ayuda {
+    font-size: 0.8rem;
+    color: var(--gris);
+    margin: 0 0 14px;
+}
+.cuadro-board {
+    min-width: 1150px;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(190px, 1fr));
+    grid-template-rows: repeat(32, 27px);
+    column-gap: 28px;
+    row-gap: 4px;
+    position: relative;
+    padding: 8px 0 16px;
+}
+.cuadro-col-titulo {
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 700;
+    font-size: 0.92rem;
+    color: var(--marino);
+    align-self: end;
+    padding-bottom: 4px;
+    border-bottom: 3px solid var(--round);
+}
+.cuadro-partido {
+    position: relative;
+    background: #fff;
+    border: 2px solid var(--round);
+    border-radius: 10px;
+    padding: 7px 8px;
+    box-shadow: 0 2px 0 rgba(22,33,62,0.04);
+    min-height: 54px;
+    z-index: 1;
+}
+.cuadro-partido[data-avanza="true"]::after {
+    content: "";
+    position: absolute;
+    right: -30px;
+    top: 50%;
+    width: 28px;
+    height: 2px;
+    background: var(--round);
+    opacity: 0.55;
+}
+.cuadro-partido.final::after,
+.cuadro-partido.tercer::after { display: none; }
+.cuadro-meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    color: var(--gris);
+    font-size: 0.64rem;
+    margin-bottom: 4px;
+}
+.cuadro-equipo {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 6px;
+    align-items: center;
+    font-size: 0.75rem;
+    line-height: 1.15;
+    padding: 2px 0;
+}
+.cuadro-equipo span:first-child {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.cuadro-equipo.ganador {
+    font-weight: 700;
+    color: var(--verde);
+}
+.cuadro-equipo.perdedor {
+    color: var(--gris);
+}
+.cuadro-equipo.pendiente { color: var(--gris); font-style: italic; }
+.cuadro-score {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 0.82rem;
+    min-width: 14px;
+    text-align: right;
+}
+.cuadro-extra {
+    background: var(--crema);
+    border-style: dashed;
+}
+.admin-winner-row {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    padding: 2px 0 0;
+}
+.admin-winner-label {
+    color: var(--gris);
+    font-size: 0.72rem;
+}
+.winner-opt {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 4px 8px;
+    border: 1.5px solid var(--marino-10);
+    border-radius: 7px;
+    background: var(--crema);
+    color: var(--marino);
+    cursor: pointer;
+    max-width: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.winner-opt.active {
+    background: var(--verde);
+    color: #fff;
+    border-color: var(--verde);
+}
+.winner-opt:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+.admin-ko-note {
+    grid-column: 1 / -1;
+    color: var(--gris);
+    font-size: 0.72rem;
+    line-height: 1.25;
+}
+@media (max-width: 480px) {
+    .cuadro-wrap { margin-left: -2px; margin-right: -2px; padding: 12px; }
+}
+
 </style>
 </head>
 <body>
 
 <header>
     <div class="header-title"><span class="accent">Mundial 2026</span> Apuestas</div>
-    <div class="header-sub" id="header-sub">102 partidos · ¿quién sabe más de fútbol?</div>
+    <div class="header-sub" id="header-sub">104 partidos · ¿quién sabe más de fútbol?</div>
     <span class="badge" id="badge-estado">...</span>
 </header>
 
 <main>
     <div class="tabs">
-        <button class="tab active" onclick="showTab('clasificacion')">Clasificación</button>
-        <button class="tab" onclick="showTab('apostar')">Mis apuestas</button>
-        <button class="tab" onclick="showTab('partidos')">Partidos</button>
-        <button class="tab" onclick="showTab('admin')">Admin</button>
+        <button class="tab active" onclick="showTab('clasificacion', this)">Clasificación</button>
+        <button class="tab" onclick="showTab('apostar', this)">Mis apuestas</button>
+        <button class="tab" onclick="showTab('partidos', this)">Partidos</button>
+        <button class="tab" onclick="showTab('cuadro', this)">Cuadro</button>
+        <button class="tab" onclick="showTab('admin', this)">Admin</button>
     </div>
 
     <section id="tab-clasificacion">
@@ -374,6 +516,11 @@ footer { text-align: center; padding: 28px; font-size: 0.76rem; color: var(--gri
     <section id="tab-partidos" class="hidden">
         <div class="section-title"><span class="dot" style="background:var(--verde)"></span>Partidos</div>
         <div id="partidos-content" class="loading-overlay"><span class="spinner"></span>Cargando...</div>
+    </section>
+
+    <section id="tab-cuadro" class="hidden">
+        <div class="section-title"><span class="dot" style="background:var(--amarillo)"></span>Cuadro eliminatorio</div>
+        <div id="cuadro-content" class="loading-overlay"><span class="spinner"></span>Cargando...</div>
     </section>
 
     <section id="tab-admin" class="hidden">
@@ -517,15 +664,13 @@ const PARTIDOS = [
     {id:95,fase:"Octavos",grupo:null,local:"Por definir",visitante:"Por definir",fecha:"2026-07-07"},
     {id:96,fase:"Octavos",grupo:null,local:"Por definir",visitante:"Por definir",fecha:"2026-07-07"},
     {id:97,fase:"Cuartos",grupo:null,local:"Por definir",visitante:"Por definir",fecha:"2026-07-09"},
-    {id:98,fase:"Cuartos",grupo:null,local:"Por definir",visitante:"Por definir",fecha:"2026-07-09"},
-    {id:99,fase:"Cuartos",grupo:null,local:"Por definir",visitante:"Por definir",fecha:"2026-07-10"},
-    {id:100,fase:"Cuartos",grupo:null,local:"Por definir",visitante:"Por definir",fecha:"2026-07-10"},
-    {id:101,fase:"Cuartos",grupo:null,local:"Por definir",visitante:"Por definir",fecha:"2026-07-11"},
-    {id:102,fase:"Cuartos",grupo:null,local:"Por definir",visitante:"Por definir",fecha:"2026-07-11"},
-    {id:103,fase:"Semifinales",grupo:null,local:"Por definir",visitante:"Por definir",fecha:"2026-07-14"},
-    {id:104,fase:"Semifinales",grupo:null,local:"Por definir",visitante:"Por definir",fecha:"2026-07-15"},
-    {id:105,fase:"Tercer puesto",grupo:null,local:"Por definir",visitante:"Por definir",fecha:"2026-07-18"},
-    {id:106,fase:"Final",grupo:null,local:"Por definir",visitante:"Por definir",fecha:"2026-07-19"}
+    {id:98,fase:"Cuartos",grupo:null,local:"Por definir",visitante:"Por definir",fecha:"2026-07-10"},
+    {id:99,fase:"Cuartos",grupo:null,local:"Por definir",visitante:"Por definir",fecha:"2026-07-11"},
+    {id:100,fase:"Cuartos",grupo:null,local:"Por definir",visitante:"Por definir",fecha:"2026-07-11"},
+    {id:101,fase:"Semifinales",grupo:null,local:"Por definir",visitante:"Por definir",fecha:"2026-07-14"},
+    {id:102,fase:"Semifinales",grupo:null,local:"Por definir",visitante:"Por definir",fecha:"2026-07-15"},
+    {id:103,fase:"Tercer puesto",grupo:null,local:"Por definir",visitante:"Por definir",fecha:"2026-07-18"},
+    {id:104,fase:"Final",grupo:null,local:"Por definir",visitante:"Por definir",fecha:"2026-07-19"}
 ]
 
 let apuestasAbiertas = true
@@ -534,6 +679,126 @@ let usuarioId = null
 let apuestasUsuario = {}
 let resultados = {}
 let adminLogado = false
+
+
+// --- Cuadro eliminatorio: cada partido recibe ganadores o perdedores de sus cruces previos ---
+// Las posiciones se mantienen con los IDs del archivo actual. El orden de los
+// emparejamientos reproduce el recorrido oficial desde los dieciseisavos hasta la final.
+const FUENTES_CUADRO = {
+    89:  { local:{partido:73,tipo:'ganador'}, visitante:{partido:76,tipo:'ganador'} },
+    90:  { local:{partido:75,tipo:'ganador'}, visitante:{partido:78,tipo:'ganador'} },
+    91:  { local:{partido:74,tipo:'ganador'}, visitante:{partido:77,tipo:'ganador'} },
+    92:  { local:{partido:79,tipo:'ganador'}, visitante:{partido:80,tipo:'ganador'} },
+    93:  { local:{partido:84,tipo:'ganador'}, visitante:{partido:83,tipo:'ganador'} },
+    94:  { local:{partido:82,tipo:'ganador'}, visitante:{partido:81,tipo:'ganador'} },
+    95:  { local:{partido:87,tipo:'ganador'}, visitante:{partido:86,tipo:'ganador'} },
+    96:  { local:{partido:85,tipo:'ganador'}, visitante:{partido:88,tipo:'ganador'} },
+    97:  { local:{partido:89,tipo:'ganador'}, visitante:{partido:90,tipo:'ganador'} },
+    98:  { local:{partido:93,tipo:'ganador'}, visitante:{partido:94,tipo:'ganador'} },
+    99:  { local:{partido:91,tipo:'ganador'}, visitante:{partido:92,tipo:'ganador'} },
+    100: { local:{partido:95,tipo:'ganador'}, visitante:{partido:96,tipo:'ganador'} },
+    101: { local:{partido:97,tipo:'ganador'}, visitante:{partido:98,tipo:'ganador'} },
+    102: { local:{partido:99,tipo:'ganador'}, visitante:{partido:100,tipo:'ganador'} },
+    103: { local:{partido:101,tipo:'perdedor'}, visitante:{partido:102,tipo:'perdedor'} },
+    104: { local:{partido:101,tipo:'ganador'}, visitante:{partido:102,tipo:'ganador'} }
+}
+
+// El orden visual agrupa los partidos que alimentan cada cruce posterior.
+const RONDAS_CUADRO = [
+    { titulo:'Dieciseisavos', ids:[73,76,75,78,84,83,82,81,74,77,79,80,87,86,85,88], col:1, color:'#FF5C4D' },
+    { titulo:'Octavos', ids:[89,90,93,94,91,92,95,96], col:2, color:'#2EC4F1' },
+    { titulo:'Cuartos', ids:[97,98,99,100], col:3, color:'#9B5DE5' },
+    { titulo:'Semifinales', ids:[101,102], col:4, color:'#1FAA59' },
+    { titulo:'Final', ids:[104], col:5, color:'#FFD23F' }
+]
+
+let ganadoresAdmin = {}
+
+function partidoBase(partidoId) {
+    return PARTIDOS.find(p => p.id === Number(partidoId))
+}
+
+function esEliminatoria(partido) {
+    return partido && partido.id >= 73
+}
+
+function resultadoCompleto(partidoId) {
+    const r = resultados[partidoId]
+    return r && r.resultado_local !== null && r.resultado_local !== undefined
+        && r.resultado_visitante !== null && r.resultado_visitante !== undefined
+}
+
+function ganadorPartido(partidoId) {
+    const r = resultados[partidoId]
+    if (!resultadoCompleto(partidoId)) return null
+    if (Number(r.resultado_local) > Number(r.resultado_visitante)) return 'local'
+    if (Number(r.resultado_visitante) > Number(r.resultado_local)) return 'visitante'
+    return r.ganador === 'local' || r.ganador === 'visitante' ? r.ganador : null
+}
+
+function ganadorParaApuesta(partido) {
+    if (!partido || !resultadoCompleto(partido.id)) return null
+    if (esEliminatoria(partido)) return ganadorPartido(partido.id)
+
+    const r = resultados[partido.id]
+    if (Number(r.resultado_local) > Number(r.resultado_visitante)) return 'local'
+    if (Number(r.resultado_visitante) > Number(r.resultado_local)) return 'visitante'
+    return 'empate'
+}
+
+function equipoDesdeFuente(fuente) {
+    const partidoOrigen = partidoResuelto(partidoBase(fuente.partido))
+    const ganador = ganadorPartido(fuente.partido)
+    if (!partidoOrigen || !ganador) return 'Por definir'
+    const lado = fuente.tipo === 'ganador'
+        ? ganador
+        : (ganador === 'local' ? 'visitante' : 'local')
+    return partidoOrigen[lado] || 'Por definir'
+}
+
+function partidoResuelto(partido) {
+    if (!partido) return null
+    const fuentes = FUENTES_CUADRO[partido.id]
+    if (!fuentes) return partido
+    return {
+        ...partido,
+        local: equipoDesdeFuente(fuentes.local),
+        visitante: equipoDesdeFuente(fuentes.visitante)
+    }
+}
+
+function hayEquiposDefinidos(partido) {
+    return partido && partido.local !== 'Por definir' && partido.visitante !== 'Por definir'
+}
+
+function normalizarResultados(rows) {
+    resultados = {}
+    if (rows && !rows.error) rows.forEach(r => resultados[r.partido_id] = r)
+}
+
+async function cargarResultadosDB() {
+    const conGanador = await sbGet('resultados', 'select=partido_id,resultado_local,resultado_visitante,ganador')
+    if (conGanador && !conGanador.error) return conGanador
+    return sbGet('resultados', 'select=partido_id,resultado_local,resultado_visitante')
+}
+
+function descendientesDe(partidosOrigen) {
+    const pendientes = [...partidosOrigen]
+    const visitados = new Set()
+    while (pendientes.length) {
+        const origen = pendientes.shift()
+        Object.entries(FUENTES_CUADRO).forEach(([destino, fuentes]) => {
+            if (fuentes.local.partido === origen || fuentes.visitante.partido === origen) {
+                const idDestino = Number(destino)
+                if (!visitados.has(idDestino)) {
+                    visitados.add(idDestino)
+                    pendientes.push(idDestino)
+                }
+            }
+        })
+    }
+    return [...visitados]
+}
 
 async function sbGet(table, params = '') {
     const r = await fetch(`${SUPABASE_URL}/rest/v1/${table}?${params}`, {
@@ -590,13 +855,14 @@ async function cargarConfig() {
     badge.className = 'badge ' + (apuestasAbiertas ? 'badge-open' : 'badge-closed')
 }
 
-function showTab(tab) {
+function showTab(tab, boton) {
     document.querySelectorAll('section[id^="tab-"]').forEach(s => s.classList.add('hidden'))
     document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'))
     document.getElementById('tab-' + tab).classList.remove('hidden')
-    event.target.classList.add('active')
+    if (boton) boton.classList.add('active')
     if (tab === 'clasificacion') renderClasificacion()
     if (tab === 'partidos') renderPartidos()
+    if (tab === 'cuadro') renderCuadro()
     if (tab === 'admin' && adminLogado) cargarAdminPartidos()
 }
 
@@ -606,10 +872,9 @@ async function renderClasificacion() {
     const [participantes, apuestas, resultadosDB] = await Promise.all([
         sbGet('participantes', 'select=id,nombre'),
         sbGet('apuestas', 'select=participante_id,partido_id,ganador'),
-        sbGet('resultados', 'select=partido_id,resultado_local,resultado_visitante')
+        cargarResultadosDB()
     ])
-    resultados = {}
-    if (resultadosDB && !resultadosDB.error) resultadosDB.forEach(r => resultados[r.partido_id] = r)
+    normalizarResultados(resultadosDB)
     if (!participantes || participantes.error || participantes.length === 0) {
         el.innerHTML = '<p class="empty-msg">Nadie ha apostado todavía.</p>'
         return
@@ -618,11 +883,12 @@ async function renderClasificacion() {
         const misApuestas = apuestas.filter(a => a.participante_id === p.id)
         let puntos = 0, aciertos = 0, jugados = 0
         misApuestas.forEach(a => {
-            const r = resultados[a.partido_id]
-            if (!r) return
+            const partido = partidoResuelto(partidoBase(a.partido_id))
+            if (esEliminatoria(partido) && a.ganador === 'empate') return
+
+            const ganadorReal = ganadorParaApuesta(partido)
+            if (!ganadorReal) return
             jugados++
-            const ganadorReal = r.resultado_local > r.resultado_visitante ? 'local'
-                : r.resultado_visitante > r.resultado_local ? 'visitante' : 'empate'
             if (a.ganador === ganadorReal) { puntos++; aciertos++ }
         })
         return { nombre: p.nombre, puntos, aciertos, jugados }
@@ -656,10 +922,9 @@ async function renderPartidos() {
     const [apuestas, participantes, resultadosDB] = await Promise.all([
         sbGet('apuestas', 'select=participante_id,partido_id,ganador'),
         sbGet('participantes', 'select=id,nombre'),
-        sbGet('resultados', 'select=partido_id,resultado_local,resultado_visitante')
+        cargarResultadosDB()
     ])
-    resultados = {}
-    if (resultadosDB && !resultadosDB.error) resultadosDB.forEach(r => resultados[r.partido_id] = r)
+    normalizarResultados(resultadosDB)
     const fases = {}
     PARTIDOS.forEach(p => {
         const key = p.fase + (p.grupo ? ' · Grupo ' + p.grupo : '')
@@ -671,20 +936,18 @@ async function renderPartidos() {
         const grupo = partidos[0].grupo
         const color = grupo ? (COLORES_GRUPO[grupo] || '#888') : '#16213E'
         html += `<div class="fase-label" style="--c:${color}"><span>${fase}</span></div>`
-        partidos.forEach(partido => {
+        partidos.forEach(partidoBaseActual => {
+            const partido = partidoResuelto(partidoBaseActual)
             const r = resultados[partido.id]
             const marcadorHtml = r
                 ? `<span class="resultado">${r.resultado_local} – ${r.resultado_visitante}</span>`
                 : `<span class="sin-resultado">vs</span>`
-            const ganadorReal = r
-                ? (r.resultado_local > r.resultado_visitante ? 'local'
-                    : r.resultado_visitante > r.resultado_local ? 'visitante' : 'empate')
-                : null
+            const ganadorReal = ganadorParaApuesta(partido)
             let chipsHtml = ''
             if (participantes && !participantes.error) {
                 participantes.forEach(part => {
                     const ap = apuestas.find(a => a.participante_id === part.id && a.partido_id === partido.id)
-                    if (!ap) return
+                    if (!ap || (esEliminatoria(partido) && ap.ganador === 'empate')) return
                     const etiq = {local: partido.local, empate: 'Empate', visitante: partido.visitante}
                     let cls = 'chip'
                     if (ganadorReal) cls += ap.ganador === ganadorReal ? ' chip-acierto' : ' chip-fallo'
@@ -725,38 +988,64 @@ async function cargarApuestasUsuario() {
         usuarioId = rows[0].id
     }
     usuarioActual = nombre
-    const apRows = await sbGet('apuestas', `participante_id=eq.${usuarioId}&select=partido_id,ganador`)
+    const [apRows, resultadosDB] = await Promise.all([
+        sbGet('apuestas', `participante_id=eq.${usuarioId}&select=partido_id,ganador`),
+        cargarResultadosDB()
+    ])
+    normalizarResultados(resultadosDB)
+
     apuestasUsuario = {}
-    if (apRows && !apRows.error) apRows.forEach(a => apuestasUsuario[a.partido_id] = a.ganador)
+    let empatesEliminatoriaAnteriores = 0
+    if (apRows && !apRows.error) {
+        apRows.forEach(a => {
+            const partido = partidoBase(a.partido_id)
+            if (esEliminatoria(partido) && a.ganador === 'empate') {
+                empatesEliminatoriaAnteriores++
+                return
+            }
+            apuestasUsuario[a.partido_id] = a.ganador
+        })
+    }
+
     document.getElementById('apostar-login').classList.add('hidden')
     document.getElementById('apostar-form').classList.remove('hidden')
     document.getElementById('apostar-titulo').textContent = `Apuestas de ${nombre}`
     document.getElementById('msg-login').innerHTML = ''
     renderFormApuestas()
+    if (empatesEliminatoriaAnteriores) {
+        mostrarMsg('msg-guardar', 'Las apuestas de empate en eliminatoria ya no son válidas. Elige el equipo que se clasifica.', 'info')
+    }
 }
 
 function renderFormApuestas() {
     const el = document.getElementById('lista-partidos-apostar')
     const cerradas = !apuestasAbiertas
     let html = ''
-    PARTIDOS.forEach(p => {
+
+    PARTIDOS.forEach(partidoBaseActual => {
+        const p = partidoResuelto(partidoBaseActual)
+        const esKO = esEliminatoria(p)
         const sel = apuestasUsuario[p.id]
         const clsL = sel === 'local' ? ' sel-local' : ''
         const clsE = sel === 'empate' ? ' sel-empate' : ''
         const clsV = sel === 'visitante' ? ' sel-visitante' : ''
         const dis = cerradas ? 'disabled style="opacity:0.5;cursor:not-allowed"' : ''
+        const opciones = esKO
+            ? `<button class="opt${clsL}" ${dis} onclick="setApuesta(${p.id},'local',this)">${p.local}</button>
+               <button class="opt${clsV}" ${dis} onclick="setApuesta(${p.id},'visitante',this)">${p.visitante}</button>`
+            : `<button class="opt${clsL}" ${dis} onclick="setApuesta(${p.id},'local',this)">${p.local}</button>
+               <button class="opt${clsE}" ${dis} onclick="setApuesta(${p.id},'empate',this)">Empate</button>
+               <button class="opt${clsV}" ${dis} onclick="setApuesta(${p.id},'visitante',this)">${p.visitante}</button>`
+
         html += `<div class="partido-apuesta">
             <div class="partido-info">
                 ${p.local} vs ${p.visitante}
-                <small>${p.fecha}${p.grupo ? ' · Grupo ' + p.grupo : ''}</small>
+                <small>${p.fecha}${p.grupo ? ' · Grupo ' + p.grupo : ''}${esKO ? ' · Elige quién se clasifica' : ''}</small>
             </div>
-            <div class="opciones-apuesta">
-                <button class="opt${clsL}" ${dis} onclick="setApuesta(${p.id},'local',this)">${p.local}</button>
-                <button class="opt${clsE}" ${dis} onclick="setApuesta(${p.id},'empate',this)">Empate</button>
-                <button class="opt${clsV}" ${dis} onclick="setApuesta(${p.id},'visitante',this)">${p.visitante}</button>
-            </div>
+            <div class="opciones-apuesta">${opciones}</div>
         </div>`
     })
+
     el.innerHTML = html
     if (cerradas) {
         mostrarMsg('msg-guardar', 'Las apuestas están cerradas. Solo puedes consultar las tuyas.', 'info')
@@ -765,6 +1054,9 @@ function renderFormApuestas() {
 }
 
 function setApuesta(partidoId, valor, btn) {
+    const partido = partidoBase(partidoId)
+    if (esEliminatoria(partido) && valor === 'empate') return
+
     const fila = btn.closest('.opciones-apuesta')
     fila.querySelectorAll('.opt').forEach(b => b.className = 'opt')
     const clsMap = { local: 'sel-local', empate: 'sel-empate', visitante: 'sel-visitante' }
@@ -775,11 +1067,13 @@ function setApuesta(partidoId, valor, btn) {
 async function guardarApuestas() {
     if (!apuestasAbiertas) return
     mostrarMsg('msg-guardar', '<span class="spinner"></span>Guardando...', 'info')
-    const rows = Object.entries(apuestasUsuario).map(([pid, g]) => ({
-        participante_id: usuarioId,
-        partido_id: parseInt(pid),
-        ganador: g
-    }))
+    const rows = Object.entries(apuestasUsuario)
+        .filter(([pid, ganador]) => !(esEliminatoria(partidoBase(pid)) && ganador === 'empate'))
+        .map(([pid, ganador]) => ({
+            participante_id: usuarioId,
+            partido_id: parseInt(pid),
+            ganador
+        }))
     if (rows.length === 0) return mostrarMsg('msg-guardar', 'No has seleccionado ninguna apuesta.', 'err')
     const res = await sbUpsert('apuestas', rows, 'participante_id,partido_id')
     if (res && res.error) return mostrarMsg('msg-guardar', 'Error al guardar: ' + res.message, 'err')
@@ -811,49 +1105,222 @@ function adminTab(tab) {
     document.getElementById('admin-resultados').classList.remove('hidden')
 }
 
+
+function formatoMarcador(r, lado) {
+    if (!r || r[`resultado_${lado}`] === null || r[`resultado_${lado}`] === undefined) return '-'
+    return r[`resultado_${lado}`]
+}
+
+function claseEquipoCuadro(partido, lado) {
+    if (partido[lado] === 'Por definir') return 'pendiente'
+    const ganador = ganadorPartido(partido.id)
+    if (!ganador) return ''
+    return ganador === lado ? 'ganador' : 'perdedor'
+}
+
+function filaCuadro(partidoBaseActual, posicion, color, claseExtra = '') {
+    const partido = partidoResuelto(partidoBaseActual)
+    const r = resultados[partido.id]
+    const localScore = formatoMarcador(r, 'local')
+    const visitanteScore = formatoMarcador(r, 'visitante')
+    const avanza = partido.id !== 104 && partido.id !== 103
+    return `<article class="cuadro-partido ${claseExtra}" data-avanza="${avanza}" style="grid-column:${posicion.col};grid-row:${posicion.row} / span 2;--round:${color}">
+        <div class="cuadro-meta"><span>${partido.fecha}</span><span>Partido ${partido.id}</span></div>
+        <div class="cuadro-equipo ${claseEquipoCuadro(partido, 'local')}"><span>${partido.local}</span><b class="cuadro-score">${localScore}</b></div>
+        <div class="cuadro-equipo ${claseEquipoCuadro(partido, 'visitante')}"><span>${partido.visitante}</span><b class="cuadro-score">${visitanteScore}</b></div>
+    </article>`
+}
+
+async function renderCuadro() {
+    const el = document.getElementById('cuadro-content')
+    el.innerHTML = '<div class="loading-overlay"><span class="spinner"></span>Cargando...</div>'
+
+    const rows = await cargarResultadosDB()
+    normalizarResultados(rows)
+
+    if (rows && rows.error) {
+        el.innerHTML = '<p class="empty-msg">No se han podido cargar los resultados.</p>'
+        return
+    }
+
+    let board = ''
+    RONDAS_CUADRO.forEach(ronda => {
+        board += `<div class="cuadro-col-titulo" style="grid-column:${ronda.col};grid-row:1;--round:${ronda.color}">${ronda.titulo}</div>`
+        ronda.ids.forEach((id, indice) => {
+            const partido = partidoBase(id)
+            const row = ronda.col === 1 ? 2 + indice * 2
+                : ronda.col === 2 ? 3 + indice * 4
+                : ronda.col === 3 ? 5 + indice * 8
+                : ronda.col === 4 ? 9 + indice * 16
+                : 17
+            board += filaCuadro(partido, {col:ronda.col, row}, ronda.color, id === 104 ? 'final' : '')
+        })
+    })
+
+    const tercer = partidoBase(103)
+    board += `<div class="cuadro-col-titulo" style="grid-column:5;grid-row:23;--round:#8D99AE">Tercer puesto</div>`
+    board += filaCuadro(tercer, {col:5, row:24}, '#8D99AE', 'tercer cuadro-extra')
+
+    el.innerHTML = `<div class="cuadro-wrap">
+        <p class="cuadro-ayuda">Al guardar un resultado, el ganador avanza automáticamente al siguiente cruce. En caso de empate, indica también quién pasó por penaltis.</p>
+        <div class="cuadro-board">${board}</div>
+    </div>`
+}
+
+function seleccionarGanadorAdmin(partidoId, ganador) {
+    ganadoresAdmin[partidoId] = ganador
+    document.querySelectorAll(`[data-winner-id="${partidoId}"]`).forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.winner === ganador)
+    })
+}
+
 async function cargarAdminPartidos() {
     const el = document.getElementById('lista-admin-partidos')
     el.innerHTML = '<div class="loading-overlay"><span class="spinner"></span>Cargando...</div>'
-    const res = await sbGet('resultados', 'select=partido_id,resultado_local,resultado_visitante')
-    resultados = {}
-    if (res && !res.error) res.forEach(r => resultados[r.partido_id] = r)
+
+    const res = await cargarResultadosDB()
+    normalizarResultados(res)
+    ganadoresAdmin = {}
+    if (res && !res.error) res.forEach(r => ganadoresAdmin[r.partido_id] = r.ganador || null)
+
     let html = ''
-    PARTIDOS.forEach(p => {
+    PARTIDOS.forEach(partidoBaseActual => {
+        const p = partidoResuelto(partidoBaseActual)
         const r = resultados[p.id] || {}
         const rl = r.resultado_local ?? ''
         const rv = r.resultado_visitante ?? ''
+        const ko = esEliminatoria(p)
+        const equiposDefinidos = hayEquiposDefinidos(p)
+        const disabled = ko && !equiposDefinidos ? 'disabled' : ''
+        const ganadorSeleccionado = ganadoresAdmin[p.id] || ''
+
         html += `<div class="admin-partido-row">
             <span style="font-size:0.83rem">[${p.id}] ${p.local} vs ${p.visitante} <small style="color:var(--gris)">${p.fecha}</small></span>
-            <input type="number" class="score-input" id="rl-${p.id}" value="${rl}" min="0" max="99" placeholder="-">
+            <input type="number" class="score-input" id="rl-${p.id}" value="${rl}" min="0" max="99" placeholder="-" ${disabled}>
             <span style="color:var(--gris);font-size:0.85rem">–</span>
-            <input type="number" class="score-input" id="rv-${p.id}" value="${rv}" min="0" max="99" placeholder="-">
-        </div>`
+            <input type="number" class="score-input" id="rv-${p.id}" value="${rv}" min="0" max="99" placeholder="-" ${disabled}>`
+
+        if (ko) {
+            html += equiposDefinidos
+                ? `<div class="admin-winner-row">
+                    <span class="admin-winner-label">Solo si hay empate:</span>
+                    <button type="button" class="winner-opt ${ganadorSeleccionado === 'local' ? 'active' : ''}" data-winner-id="${p.id}" data-winner="local" onclick="seleccionarGanadorAdmin(${p.id}, 'local')">Pasa ${p.local}</button>
+                    <button type="button" class="winner-opt ${ganadorSeleccionado === 'visitante' ? 'active' : ''}" data-winner-id="${p.id}" data-winner="visitante" onclick="seleccionarGanadorAdmin(${p.id}, 'visitante')">Pasa ${p.visitante}</button>
+                </div>`
+                : `<div class="admin-ko-note">Este cruce se completará al registrar los partidos anteriores.</div>`
+        }
+        html += `</div>`
     })
     el.innerHTML = html
 }
 
 async function guardarResultados() {
     const msg = document.getElementById('msg-resultados')
-    msg.textContent = 'Guardando...'
-    for (const p of PARTIDOS) {
-        const rlEl = document.getElementById('rl-' + p.id)
-        const rvEl = document.getElementById('rv-' + p.id)
-        const rl = rlEl?.value.trim()
-        const rv = rvEl?.value.trim()
-        if (rl === '' && rv === '') {
-            await sbDelete('resultados', `partido_id=eq.${p.id}`)
+    msg.textContent = 'Validando...'
+
+    const cambios = []
+    const errores = []
+
+    for (const partidoBaseActual of PARTIDOS) {
+        const p = partidoResuelto(partidoBaseActual)
+        const rl = document.getElementById('rl-' + p.id)?.value.trim()
+        const rv = document.getElementById('rv-' + p.id)?.value.trim()
+        const anterior = resultados[p.id]
+        const sinResultado = rl === '' && rv === ''
+
+        if ((rl === '') !== (rv === '')) {
+            errores.push(`Partido ${p.id}: introduce ambos marcadores o deja ambos vacíos.`)
             continue
         }
-        if (rl !== '' && rv !== '') {
-            await sbUpsert('resultados', [{
-                partido_id: p.id,
-                resultado_local: parseInt(rl),
-                resultado_visitante: parseInt(rv)
-            }], 'partido_id')
+
+        if (!sinResultado && (!Number.isInteger(Number(rl)) || !Number.isInteger(Number(rv)) || Number(rl) < 0 || Number(rv) < 0)) {
+            errores.push(`Partido ${p.id}: el marcador no es válido.`)
+            continue
         }
+
+        const ko = esEliminatoria(p)
+        const ganadorManual = ganadoresAdmin[p.id] || null
+        if (ko && !sinResultado) {
+            if (!hayEquiposDefinidos(p)) {
+                errores.push(`Partido ${p.id}: los dos equipos aún no están definidos.`)
+                continue
+            }
+            if (Number(rl) === Number(rv) && !ganadorManual) {
+                errores.push(`Partido ${p.id}: selecciona quién avanza por penaltis.`)
+                continue
+            }
+        }
+
+        const nuevo = sinResultado ? null : {
+            partido_id: p.id,
+            resultado_local: Number(rl),
+            resultado_visitante: Number(rv),
+            ganador: ko && Number(rl) === Number(rv) ? ganadorManual : null
+        }
+
+        const firmaAnterior = anterior
+            ? `${anterior.resultado_local}|${anterior.resultado_visitante}|${anterior.ganador || ''}`
+            : ''
+        const firmaNueva = nuevo
+            ? `${nuevo.resultado_local}|${nuevo.resultado_visitante}|${nuevo.ganador || ''}`
+            : ''
+
+        if (firmaAnterior !== firmaNueva) cambios.push({ partido:p, nuevo })
     }
-    msg.textContent = 'Guardado'
-    setTimeout(() => msg.textContent = '', 3000)
+
+    if (errores.length) {
+        msg.textContent = errores[0]
+        return
+    }
+
+    if (!cambios.length) {
+        msg.textContent = 'No hay cambios'
+        return
+    }
+
+    msg.textContent = 'Guardando...'
+    const afectados = new Set()
+
+    for (const cambio of cambios) {
+        if (cambio.nuevo) {
+            const res = await sbUpsert('resultados', [cambio.nuevo], 'partido_id')
+            if (res && res.error) {
+                msg.textContent = `Error al guardar el partido ${cambio.partido.id}: ${res.message}`
+                return
+            }
+        } else {
+            const ok = await sbDelete('resultados', `partido_id=eq.${cambio.partido.id}`)
+            if (!ok) {
+                msg.textContent = `Error al borrar el partido ${cambio.partido.id}`
+                return
+            }
+        }
+        if (esEliminatoria(cambio.partido)) afectados.add(cambio.partido.id)
+    }
+
+    const descendientes = descendientesDe([...afectados])
+    for (const partidoId of descendientes) {
+        await sbDelete('resultados', `partido_id=eq.${partidoId}`)
+        ganadoresAdmin[partidoId] = null
+    }
+
+    const resActualizados = await cargarResultadosDB()
+    normalizarResultados(resActualizados)
+    await cargarAdminPartidos()
+    if (!document.getElementById('tab-cuadro').classList.contains('hidden')) renderCuadro()
+    if (!document.getElementById('tab-partidos').classList.contains('hidden')) renderPartidos()
+    if (!document.getElementById('tab-clasificacion').classList.contains('hidden')) renderClasificacion()
+
+    const mensajeActual = document.getElementById('msg-resultados')
+    if (mensajeActual) {
+        mensajeActual.textContent = descendientes.length
+            ? 'Guardado. Se han reiniciado los resultados posteriores afectados.'
+            : 'Guardado'
+    }
+    setTimeout(() => {
+        const actual = document.getElementById('msg-resultados')
+        if (actual) actual.textContent = ''
+    }, 3500)
 }
 
 async function toggleApuestas() {
